@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"se",
+				"send"
+			],
+			[
 				"User",
 				"UserSchemma"
 			]
@@ -33,7 +37,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 410,
+				"buffer_size": 369,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -57,10 +61,7 @@
 			}
 		},
 		{
-			"contents": "'use strict'\n\n//para poder accceder a la bd\nvar mongoose = require('mongoose');\n\n// para definir un modelo-schema de la bd\nvar Schema = mongoose.Schema;\n\n\nvar ProgramSchemma = Schema({\n\tnombre: String,\n    descripcion: String,\n    year: Number,   \n    imagen: String,\n    radiochanel: { type : Schema.ObjectId, ref: RadioChanel}\n});\n\n\nmodule.exports = mongoose.model('Program', ProgramSchemma); ",
 			"file": "models/program.js",
-			"file_size": 412,
-			"file_write_time": 131648349708403616,
 			"settings":
 			{
 				"buffer_size": 395,
@@ -73,6 +74,24 @@
 			"settings":
 			{
 				"buffer_size": 389,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/user.js",
+			"settings":
+			{
+				"buffer_size": 2743,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "routes/user.js",
+			"settings":
+			{
+				"buffer_size": 305,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -111,7 +130,9 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/tfg_ucav",
-		"/C/wamp/www/tfg_ucav/models"
+		"/C/wamp/www/tfg_ucav/controllers",
+		"/C/wamp/www/tfg_ucav/models",
+		"/C/wamp/www/tfg_ucav/routes"
 	],
 	"file_history":
 	[
@@ -153,7 +174,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -181,7 +202,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -209,7 +230,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -218,15 +239,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 410,
+						"buffer_size": 369,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								369,
-								369
+								222,
+								222
 							]
 						],
 						"settings":
@@ -237,7 +258,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -253,8 +274,8 @@
 						"selection":
 						[
 							[
-								360,
-								0
+								183,
+								299
 							]
 						],
 						"settings":
@@ -265,7 +286,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -293,7 +314,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -310,7 +331,7 @@
 						[
 							[
 								395,
-								0
+								395
 							]
 						],
 						"settings":
@@ -350,6 +371,62 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "controllers/user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2743,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2147,
+								2147
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 972.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "routes/user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 305,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								305,
+								305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
 					"type": "text"
 				}
 			]

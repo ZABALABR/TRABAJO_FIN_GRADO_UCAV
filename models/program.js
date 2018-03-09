@@ -16,4 +16,4 @@ var ProgramSchemma = Schema({
 });
 
 
-module.exports = mongoose.model('Program', ProgramSchemma);
+module.exports = mongoose.model('Program', ProgramSchemma); 
