@@ -67,32 +67,44 @@ function loginUser (req, res){
 
 	var email = params.email;
 	var password = params.password;
-   // console.log('entramos en funcion loginUser'); 
-	User.findOne({email: email.toLowerCase()}), (err, user) => {
-		if (err){
-				 res.status(500).send({message: 'Error en la peticion'});
-		}else{
-							if(!user){
- 								res.status(404).send({message: 'El usuario no existe'});
- 							}else {
- 								//comprobar la contraseña que nos envia el usuario con post la validamos con la que esta en la bd
- 								bcrypt.compare(password, user.password, function (err, check) {
- 									if (check){
- 										//devolver los datos del usuario logueado
- 										if (params.gethash){
- 											//devolver un token de jwt
- 										}else{
- 											res.status(200).send({user});
- 										}
+ 
 
- 									}else{
- 										res.status(404).send({message: 'El usuario no ha podido loguearse'});
- 									}
- 								})
- 							}
-		}
-	}
+    User.findOne({email: email.toLowerCase()}, (err, user) => {
+     	
+	if (err){
+		       	
+			 res.status(500).send({message: 'Error en la peticion'});
+	}else{
+						if(!user){
+							     	
+								res.status(404).send({message: 'El usuario no existe'});
+							}else {
+								//comprobar la contraseña que nos envia el usuario con post la validamos con la que esta en la bd
+								    	
+								bcrypt.compare(password, user.password, function (err, check) {
+									if (check){
+										    	
+										//devolver los datos del usuario logueado
+										if (params.gethash){
+											//devolver un token de jwt
+												  
+										}else{
+										 
+											res.status(200).send({user});
+										}
+
+									}else{
+										
+										res.status(404).send({message: 'El usuario no ha podido loguearse'});
+									}
+								})
+							}
+			}
+	});	
+
+
 }
+
 
 module.exports = {
 	pruebas,
