@@ -85,7 +85,7 @@ function loginUser (req, res){
 								    	
 								bcrypt.compare(password, user.password, function (err, check) {
 									if (check){
-										console.log('vamos a pedir token')    	;
+										
 										//devolver los datos del usuario logueado
 										if (params.gethash){
 											//devolver un token de jwt
@@ -100,7 +100,7 @@ function loginUser (req, res){
 
 									}else{
 										
-										res.status(404).send({message: 'El usuario no ha podido loguearse'});
+										res.status(404).send({message: 'El usuario no ha podido loguearse....'});
 									}
 								})
 							}
