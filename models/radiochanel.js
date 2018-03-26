@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var RadioChanelSchemma = Schema({
+var RadioChannelSchemma = Schema({
 	nombre: String,
     descripcion: String,
     
@@ -15,5 +15,5 @@ var RadioChanelSchemma = Schema({
 });
 
 
-module.exports = mongoose.model('RadioChanel', RadioChanelSchemma);
+module.exports = mongoose.model('RadioChannel', RadioChannelSchemma);
 

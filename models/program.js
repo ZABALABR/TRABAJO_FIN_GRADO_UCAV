@@ -12,7 +12,7 @@ var ProgramSchemma = Schema({
     descripcion: String,
     year: Number,   
     imagen: String,
-    radiochanel: { type : Schema.ObjectId, ref: RadioChanel}
+    radiochannel: { type : Schema.ObjectId, ref: RadioChannel}
 });
 
 
