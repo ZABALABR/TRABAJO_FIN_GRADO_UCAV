@@ -1,13 +1,13 @@
 'use strict'
 
-var fs = require('fs');
-var path = require('path');
+var fs = require('fs');//importarmos el modulo file system (sistema de fichero)
+var path = require('path');  // para poder trabajar con los paths
 
 
 //cargamos el modulo para encriptar contraseñas
 var bcrypt = require ('bcrypt-nodejs');
 // cargamos nuestro modelo de usuarios
-var User = require('../models/user');
+var Usuario = require('../models/usuario');
 
 var jwt = require('../services/jwt');
 
@@ -19,9 +19,9 @@ function pruebas(req, res) {
 }
 
 
-function saveUser(req, res){
+function registrarUsuario(req, res){
 
-		var user = new User();
+		var user = new Usuario();
         //recogemos los parametros que vienen por post en el body, recogemos el cuerpo de la petición  
 		var params = req.body;
 	     
@@ -32,12 +32,16 @@ function saveUser(req, res){
 	    user.apellidos = params.apellidos;
 	    user.email= params.email;
 	  
-	    user.role= 'ROLE_USER';
+	    user.rol= 'ROL_USUARIO';
 	    user.imagen= 'null';
        
 	    
 	    if (params.password) {
-	    	// Encriptar contraseña 
+	    	// Encriptar contraseña RSRS
+
+
+
+	    	
 	    	bcrypt.hash(params.password,null,null, function (err, hash){
 
 	    		user.password=hash;
@@ -50,7 +54,7 @@ function saveUser(req, res){
  							if(!userStored){
  								res.status(404).send({message: 'No se ha registrado el usuario'});
  							}else{
- 								res.status(200).send({user: userStored});	
+ 								res.status(200).send({usuario: userStored});	
  							}
 	    				}
 	    			})
@@ -68,7 +72,7 @@ function saveUser(req, res){
 
 }
 
-function loginUser (req, res){ 
+function IdentificarUsuario (req, res){ 
 	// comprueba que los datos de la peticion por post (email y contraseña) mira si existen en la bd
 	var params = req.body;
 
@@ -76,7 +80,7 @@ function loginUser (req, res){
 	var password = params.password;
  
 
-    User.findOne({email: email.toLowerCase()}, (err, user) => {
+    Usuario.findOne({email: email.toLowerCase()}, (err, user) => {
      	
 	if (err){
 		       	
@@ -92,7 +96,7 @@ function loginUser (req, res){
 									if (check){
 										
 										//devolver los datos del usuario logueado
-										if (params.gethash){
+										if (params.DameToken){
 											//devolver un token de jwt
 											res.status(200).send({ 
 												token: jwt.createToken(user)
@@ -100,7 +104,7 @@ function loginUser (req, res){
 												  
 										}else{
 										 
-											res.status(200).send({user});
+											res.status(200).send({usuario:user});
 										}
 
 									}else{
@@ -115,7 +119,7 @@ function loginUser (req, res){
 
 }
 
-function updateUser(req, res){
+function actualizarUsuario(req, res){
 	var userId = req.params.id;
 	var update = req.body;
 
@@ -123,25 +127,26 @@ function updateUser(req, res){
 	  return res.status(500).send({message: 'No tienes permiso para actualizar este usuario'});
 	}
 
-	User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
+	Usuario.findByIdAndUpdate(userId, update, (err, userUpdated) => {
 		if(err){
 			res.status(501).send({message: 'Error al actualizar el usuario'});
 		}else{
 			if(!userUpdated){
 				res.status(404).send({message: 'No se ha podido actualizar el usuario'});
 			}else{
-				res.status(200).send({user: userUpdated});
+				res.status(200).send({usuario: userUpdated});
 			}
 		}
 	});
 }
 
-function uploadImage(req, res){
+function subirFicheroLogo(req, res){
+	//Recibe por parámetro el id del usuario
 	var userId = req.params.id;
 	var file_name = 'No subido...';
 
 	if(req.files){
-		var file_path = req.files.image.path;
+		var file_path = req.files.fichero.path;
 		var file_split = file_path.split('\\');
 		var file_name = file_split[2];
 
@@ -150,40 +155,40 @@ function uploadImage(req, res){
 
 		if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif'){
 
-			User.findByIdAndUpdate(userId, {image: file_name}, (err, userUpdated) => {
+			Usuario.findByIdAndUpdate(userId, {imagen: file_name}, (err, userUpdated) => {
 				if(!userUpdated){
 					res.status(404).send({message: 'No se ha podido actualizar el usuario'});
 				}else{
-					res.status(200).send({image: file_name, user: userUpdated});
+					res.status(200).send({fichero: file_name, usuario: userUpdated});
 				}
 			});
 
 		}else{
-			res.status(200).send({message: 'Extensión del archivo no valida'});
+			res.status(402).send({message: 'Extensión del archivo no valida'});
 		}
 		
 	}else{
-		res.status(200).send({message: 'No has subido ninguna imagen...'});
+		res.status(401).send({message: 'No has subido ningun fichero...'});
 	}
 }
 
-function getImageFile(req, res){
-	var imageFile = req.params.imageFile;
-	var path_file = './uploads/users/'+imageFile;
+function ObtenerFicheroLogo(req, res){
+	var imageFile = req.params.ficheroLogo;//nombre del fichero que quiero sacar del servidor nos llega por la url
+	var path_file = './uploads/usuarios/'+imageFile;
 	fs.exists(path_file, function(exists){
 		if(exists){
 			res.sendFile(path.resolve(path_file));
 		}else{
-			res.status(200).send({message: 'No existe la imagen...'});
+			res.status(404).send({message: 'No existe el fichero solicitado...'});
 		}
 	});
 }
 
 module.exports = {
 	pruebas,
-	saveUser,
-	loginUser,
-	updateUser,
-	uploadImage,
-	getImageFile
+	registrarUsuario,
+	IdentificarUsuario,
+	actualizarUsuario,
+	subirFicheroLogo,
+	ObtenerFicheroLogo
 };

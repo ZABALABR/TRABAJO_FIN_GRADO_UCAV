@@ -7,13 +7,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var ProgramSchemma = Schema({
+var ProgramaSchemma = Schema({
 	nombre: String,
     descripcion: String,
-    year: Number,   
+    temporada: Number, //año   
     imagen: String,
-    radiochannel: { type : Schema.ObjectId, ref: RadioChannel}
+    canalradio: { type : Schema.ObjectId, ref: 'CanalRadio'}
 });
 
 
-module.exports = mongoose.model('Program', ProgramSchemma); 
+module.exports = mongoose.model('Programa', ProgramaSchemma); 

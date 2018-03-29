@@ -6,7 +6,9 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // cargar rutas
-var user_routes = require('./routes/user');
+var rutas_usuario = require('./routes/usuario');
+var rutas_canalRadio = require('./routes/canalRadio');
+var rutas_programa = require('./routes/programa');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -25,8 +27,9 @@ app.use((req, res, next) => {
 
 //rutas base
 
-app.use('/api', user_routes);
-
+app.use('/api', rutas_usuario);
+app.use('/api', rutas_canalRadio);
+app.use('/api', rutas_programa);
 
 
 //exportar modulo

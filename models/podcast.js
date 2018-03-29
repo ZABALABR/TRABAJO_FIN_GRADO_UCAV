@@ -12,7 +12,7 @@ var PodcastSchemma = Schema({
     descripcion: String,
     duracion: String,
     file: String,   
-    program: { type : Schema.ObjectId, ref: Program}
+    programa: { type : Schema.ObjectId, ref: 'Programa'}
 });
 
 
