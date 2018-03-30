@@ -9,24 +9,91 @@ var Programa = require('../models/programa');
 var Podcast = require('../models/podcast');
 
 function getPrograma(req, res){
-    res.status(200).send({message: 'prueba getPrograma.....'});
-	/*
-	var albumId = req.params.id;
+    //res.status(200).send({message: 'prueba getPrograma.....'});
 
-	Album.findById(albumId).populate({path: 'artist'}).exec((err, album)=>{
+    //obtenemos los datos de un programa cuyo id se lo pasamos por paramatro.
+	
+	var programaId = req.params.id;
+    // con el metodo populate obtenemos a partir de la propiedad canal radio un objeto con todos los datos del canal de radio. 
+	Programa.findById(programaId).populate({path: 'canalradio'}).exec((err, programa)=>{
 		if(err){
 			res.status(500).send({message: 'Error en la petición'});
 		}else{
-			if(!album){
-				res.status(404).send({message: 'El album no existe.'});
+			if(!programa){
+				res.status(404).send({message: 'El programa no existe.'});
 			}else{
-				res.status(200).send({album});
+				res.status(200).send({programa});
 			}
 		}
 	});
-	*/
+	
 }
 
+function guardarPrograma(req, res){
+	//creamos un programa con los datos pasados por el body
+	var programa = new Programa();
+
+	var params = req.body;
+	programa.nombre = params.nombre;
+	programa.descripcion = params.descripcion;
+	programa.temporada = params.temporada;
+	programa.imagen = 'null';
+	programa.canalradio = params.canalradio;  //id del canal
+
+	programa.save((err, programaStored) => {
+		if(err){
+			res.status(500).send({message: 'Error en el servidor al guardar el programa'});
+		}else{
+			if(!programaStored){
+				res.status(404).send({message: 'No se ha guardado el programa'});
+			}else{
+				res.status(200).send({programa: programaStored});
+			}
+		}
+	});
+}
+
+
+function getProgramas(req, res){
+	var canalId = req.params.canalradio;
+    // si llega por parametro un id, saco los datos de ese canal de radio en concreto y si no se le  pasa parametros sacamos todos los programas de la bd (es de decir de todos los canales)
+	if(!canalId){
+		
+		var find = Programa.find({}).sort('nombre');
+	}else{
+		
+		var find = Programa.find({canalradio: canalId}).sort('temporada');
+	}
+
+	find.populate({path: 'canalradio'}).exec((err, programas) => {
+		if(err){
+			res.status(500).send({message: 'Error en la petición'});
+		}else{
+			if(!programas){
+				res.status(404).send({message: 'No hay programas'});
+			}else{
+				res.status(200).send({programas});
+			}
+		}
+	});
+}
+
+function actualizarPrograma(req, res){
+	var programaId = req.params.id;
+	var update = req.body;
+
+	Programa.findByIdAndUpdate(programaId, update, (err, programaUpdated) => {
+		if(err){
+			res.status(500).send({message: 'Error en el servidor'});
+		}else{
+			if(!programaUpdated){
+				res.status(404).send({message: 'No se ha actualizado el programa'});
+			}else{
+				res.status(200).send({programa: programaUpdated});
+			}
+		}
+	});
+}
 /*
 function getAlbums(req, res){
 	var artistId = req.params.artist;
@@ -164,7 +231,11 @@ function getImageFile(req, res){
 
 */
 module.exports = {
-    getPrograma
+    getPrograma,
+    guardarPrograma,
+    getProgramas,
+    actualizarPrograma
+    
 	/*
 	getAlbum,
 	saveAlbum,

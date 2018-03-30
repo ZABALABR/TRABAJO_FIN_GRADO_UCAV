@@ -8,7 +8,10 @@ var md_auth = require('../middlewares/authenticated');
 var multipart = require('connect-multiparty');
 var md_upload = multipart({ uploadDir: './uploads/programas' });
 
-api.get('/programa', md_auth.ensureAuth, ProgramaController.getPrograma);
+api.get('/programa/:id', md_auth.ensureAuth, ProgramaController.getPrograma);
+api.post('/programa', md_auth.ensureAuth, ProgramaController.guardarPrograma);
+api.get('/programas/:canalradio?', md_auth.ensureAuth, ProgramaController.getProgramas);
+api.put('/programa/:id', md_auth.ensureAuth, ProgramaController.actualizarPrograma);
 /*
 api.get('/album/:id', md_auth.ensureAuth, AlbumController.getAlbum);
 api.post('/album', md_auth.ensureAuth, AlbumController.saveAlbum);

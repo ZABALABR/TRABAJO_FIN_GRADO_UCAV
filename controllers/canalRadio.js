@@ -64,7 +64,7 @@ function getCanales(req, res){
 
 	var itemsPerPage = 4;
 
-	Canal.find().sort('name').paginate(page, itemsPerPage, function(err, canales, total){
+	Canal.find().sort('nombre').paginate(page, itemsPerPage, function(err, canales, total){
 		if(err){
 			res.status(500).send({message: 'Error en la petición.'});
 		}else{
