@@ -1,0 +1,7 @@
+/*Para todo el proyecto*/
+
+html, body{
+	margin: 0px;
+	height: 100%;
+	background: rgb(250, 245, 242);  /*GRIS CLARITO*/  /*187, 208, 169     221, 247, 245     195, 213, 227        */
+}
