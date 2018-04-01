@@ -164,7 +164,7 @@ function subirFicheroCanal(req, res){
 		}
 		
 	}else{
-		res.status(402).send({message: 'No has subido ninguna imagen...'});
+		res.status(402).send({message: 'No has subido ningún fichero...'});
 	}
 }
 
@@ -176,7 +176,7 @@ function obtenerFicheroCanal(req, res){
 		if(exists){
 			res.sendFile(path.resolve(path_file));
 		}else{
-			res.status(200).send({message: 'No existe el fichero del canal...'});
+			res.status(404).send({message: 'No existe el fichero solicitado.'});
 		}
 	});
 }

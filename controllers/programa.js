@@ -94,90 +94,26 @@ function actualizarPrograma(req, res){
 		}
 	});
 }
-/*
-function getAlbums(req, res){
-	var artistId = req.params.artist;
 
-	if(!artistId){
-		// Sacar todos los albums de la bbdd
-		var find = Album.find({}).sort('title');
-	}else{
-		// Sacar los albums de un artista concreto de la bbdd
-		var find = Album.find({artist: artistId}).sort('year');
-	}
+function borrarPrograma(req, res){
+	var programaId = req.params.id; 
 
-	find.populate({path: 'artist'}).exec((err, albums) => {
+	Programa.findByIdAndRemove(programaId, (err, programaRemoved)=>{
 		if(err){
-			res.status(500).send({message: 'Error en la petición'});
+			res.status(501).send({message: 'Error al eliminar el programa de radio'});
 		}else{
-			if(!albums){
-				res.status(404).send({message: 'No hay albums'});
-			}else{
-				res.status(200).send({albums});
-			}
-		}
-	});
-}
-
-function saveAlbum(req, res){
-	var album = new Album();
-
-	var params = req.body;
-	album.title = params.title;
-	album.description = params.description;
-	album.year = params.year;
-	album.image = 'null';
-	album.artist = params.artist;
-
-	album.save((err, albumStored) => {
-		if(err){
-			res.status(500).send({message: 'Error en el servidor'});
-		}else{
-			if(!albumStored){
-				res.status(404).send({message: 'No se ha guardado el album'});
-			}else{
-				res.status(200).send({album: albumStored});
-			}
-		}
-	});
-}
-
-function updateAlbum(req, res){
-	var albumId = req.params.id;
-	var update = req.body;
-
-	Album.findByIdAndUpdate(albumId, update, (err, albumUpdated) => {
-		if(err){
-			res.status(500).send({message: 'Error en el servidor'});
-		}else{
-			if(!albumUpdated){
-				res.status(404).send({message: 'No se ha actualizado el album'});
-			}else{
-				res.status(200).send({album: albumUpdated});
-			}
-		}
-	});
-}
-
-function deleteAlbum(req, res){
-	var albumId = req.params.id; 
-
-	Album.findByIdAndRemove(albumId, (err, albumRemoved)=>{
-		if(err){
-			res.status(500).send({message: 'Error al eliminar el album'});
-		}else{
-			if(!albumRemoved){
-				res.status(404).send({message: 'El album no ha sido eliminado'});
+			if(!programaRemoved){
+				res.status(402).send({message: 'El programa de radio no ha sido eliminado'});
 			}else{
 
-				Song.find({album: albumRemoved._id}).remove((err, songRemoved)=>{
+				Podcast.find({programa: programaRemoved._id}).remove((err, podcastRemoved)=>{
 					if(err){
-						res.status(500).send({message: 'Error al eliminar la canción'});
+						res.status(502).send({message: 'Error al eliminar el podcast'});
 					}else{
-						if(!songRemoved){
-							res.status(404).send({message: 'La canción no ha sido eliminada'});
+						if(!podcastRemoved){
+							res.status(403).send({message: 'El podcast no ha sido eliminado'});
 						}else{
-							res.status(200).send({album: albumRemoved});
+							res.status(200).send({programa: programaRemoved});
 						}
 					}
 				});
@@ -186,12 +122,15 @@ function deleteAlbum(req, res){
 	});
 }
 
-function uploadImage(req, res){
-	var albumId = req.params.id;
+
+
+function subirFicheroPrograma(req, res){
+	//permite guarda un fichero de imagen en la carpeta del servidor correspondiente
+	var programaId = req.params.id;
 	var file_name = 'No subido...';
 
 	if(req.files){
-		var file_path = req.files.image.path;
+		var file_path = req.files.logotipo.path;
 		var file_split = file_path.split('\\');
 		var file_name = file_split[2];
 
@@ -200,11 +139,11 @@ function uploadImage(req, res){
 
 		if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif'){
 
-			Album.findByIdAndUpdate(albumId, {image: file_name}, (err, albumUpdated) => {
-				if(!albumUpdated){
-					res.status(404).send({message: 'No se ha podido actualizar el usuario'});
+			Programa.findByIdAndUpdate(programaId, {imagen: file_name}, (err, programaUpdated) => {
+				if(!programaUpdated){
+					res.status(404).send({message: 'No se ha podido actualizar el programa de radio'});
 				}else{
-					res.status(200).send({album: albumUpdated});
+					res.status(200).send({programa: programaUpdated});
 				}
 			});
 
@@ -213,36 +152,35 @@ function uploadImage(req, res){
 		}
 		
 	}else{
-		res.status(200).send({message: 'No has subido ninguna imagen...'});
+		res.status(200).send({message: 'No has subido ningun ficherro...'});
 	}
 }
 
-function getImageFile(req, res){
-	var imageFile = req.params.imageFile;
-	var path_file = './uploads/albums/'+imageFile;
+function obtenerFicheroPrograma(req, res){
+
+	//permite recuperar la imagen para visualizarla
+	var imageFile = req.params.ficheroPrograma;
+	var path_file = './uploads/programas/'+imageFile;
 	fs.exists(path_file, function(exists){
 		if(exists){
 			res.sendFile(path.resolve(path_file));
 		}else{
-			res.status(200).send({message: 'No existe la imagen...'});
+			res.status(404).send({message: 'No existe el fichero solicitado del programa.'});
 		}
 	});
 }
 
-*/
+
+
+
 module.exports = {
     getPrograma,
     guardarPrograma,
     getProgramas,
-    actualizarPrograma
+    actualizarPrograma,
+    borrarPrograma,
+    subirFicheroPrograma,
+    obtenerFicheroPrograma
     
-	/*
-	getAlbum,
-	saveAlbum,
-	getAlbums,
-	updateAlbum,
-	deleteAlbum,
-	uploadImage,
-	getImageFile
-	*/
+	
 };

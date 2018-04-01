@@ -9,7 +9,7 @@ var app = express();
 var rutas_usuario = require('./routes/usuario');
 var rutas_canalRadio = require('./routes/canalRadio');
 var rutas_programa = require('./routes/programa');
-
+var rutas_podcast = require('./routes/podcast');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.use('/api', rutas_usuario);
 app.use('/api', rutas_canalRadio);
 app.use('/api', rutas_programa);
-
+app.use('/api', rutas_podcast);
 
 //exportar modulo
 

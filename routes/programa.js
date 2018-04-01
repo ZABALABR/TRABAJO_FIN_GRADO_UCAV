@@ -12,14 +12,9 @@ api.get('/programa/:id', md_auth.ensureAuth, ProgramaController.getPrograma);
 api.post('/programa', md_auth.ensureAuth, ProgramaController.guardarPrograma);
 api.get('/programas/:canalradio?', md_auth.ensureAuth, ProgramaController.getProgramas);
 api.put('/programa/:id', md_auth.ensureAuth, ProgramaController.actualizarPrograma);
-/*
-api.get('/album/:id', md_auth.ensureAuth, AlbumController.getAlbum);
-api.post('/album', md_auth.ensureAuth, AlbumController.saveAlbum);
-api.get('/albums/:artist?', md_auth.ensureAuth, AlbumController.getAlbums);
-api.put('/album/:id', md_auth.ensureAuth, AlbumController.updateAlbum);
-api.delete('/album/:id', md_auth.ensureAuth, AlbumController.deleteAlbum);
-api.post('/upload-image-album/:id', [md_auth.ensureAuth, md_upload], AlbumController.uploadImage);
-api.get('/get-image-album/:imageFile', AlbumController.getImageFile);
+api.delete('/programa/:id', md_auth.ensureAuth, ProgramaController.borrarPrograma);
+api.post('/programa/logotipo/subir/:id', [md_auth.ensureAuth, md_upload], ProgramaController.subirFicheroPrograma);
+api.get('/programa/logotipo/:ficheroPrograma', ProgramaController.obtenerFicheroPrograma);
 
-*/
+
 module.exports = api;
