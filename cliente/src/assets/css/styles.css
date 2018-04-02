@@ -5,3 +5,13 @@ html, body{
 	height: 100%;
 	background: rgb(250, 245, 242);  /*GRIS CLARITO*/  /*187, 208, 169     221, 247, 245     195, 213, 227        */
 }
+
+form {
+    /* Sólo para centrar el formulario a la página */
+    margin: 0 auto;
+    width: 400px;
+    /* Para ver el borde del formulario */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+}
