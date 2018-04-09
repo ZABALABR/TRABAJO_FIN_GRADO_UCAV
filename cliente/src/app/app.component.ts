@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   public usuario: Usuario;
   public usuario_reg: Usuario;
   public identity ;     //propiedad para comprobar los datos del usuario logueado , y lo vamos a guardar en el local storage.
-  public registrar = false;
+  public registrar = true;
   public errorMessage;
   public token; //tb lo vamos a guardar en el local storage
 
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
     private _servicioUsuario:ServicioUsuario
     ){
   	this.usuario = new Usuario('','','','','','ROLE_USER','');
-    //this.usuario_registrado = new Usuario('','','','','',ROLE_USER','');
+    this.usuario_reg = new Usuario('','','','','','ROLE_USER','');
     //this.url = GLOBAL.url;
   }
 
@@ -107,15 +107,13 @@ export class AppComponent implements OnInit{
   }
 
   registro(){
-    if (this.registrar){
-      this.registrar = false;
 
-    }else{
-      this.registrar = true;  
-    }
- 
+  if (this.registrar == null){
+   this.registrar = false;
+ }
         var element = document.getElementById("content");
-        var check = document.getElementById("reg");
+        //var check = document.getElementById("reg");
+console.log(this.registrar)
         if (this.registrar) {
             element.style.display='block';
         }
@@ -124,9 +122,19 @@ export class AppComponent implements OnInit{
         }
 
 
+   if (this.registrar){
+      this.registrar = false;
+
+    }else{
+      this.registrar = true;  
+    }
 
 
 
+  }
+
+  onSubmitRegister(){
+    console.log(this.usuario_reg);
   }
 }
 
