@@ -32,37 +32,37 @@ export class ServicioUsuario{
 						 .map(res => res.json());
 		
 	}
-/*
-	register(user_to_register){
-		let params = JSON.stringify(user_to_register);
-		let headers = new Headers({'Content-Type':'application/json'});
 
-		return this._http.post(this.url+'register', params, {headers: headers})
+	registrar(usuario_a_registrar){
+		let params = JSON.stringify(usuario_a_registrar);
+		let headers = new Headers({'Content-Type':'application/json'});
+        //petición ajax con la url de nuestra api REST
+		return this._http.post(this.url+'registro', params, {headers: headers})
 						 .map(res => res.json());
 	}
 
-	updateUser(user_to_update){
-		let params = JSON.stringify(user_to_update);
+	actualizaUsuario(usuario_a_actualizar){
+		let params = JSON.stringify(usuario_a_actualizar);
 		let headers = new Headers({
 				'Content-Type':'application/json',
 				'Authorization': this.getToken()
 			});
 
-		return this._http.put(this.url+'update-user/'+user_to_update._id, 
+		return this._http.put(this.url+'actualizar-usuario/'+usuario_a_actualizar._id, 
 			params, {headers: headers})
 						 .map(res => res.json());
 	}
 
-*/
+
 	getIdentity(){
 		let identity = JSON.parse(localStorage.getItem('identity'));
 
 		if(identity != "undefined"){
-			this.identity = identity;
 		}else{
-			this.identity = null;
+			this.identity = identity;
 		}
 
+			this.identity = null;
 		return this.identity;
 	}
 

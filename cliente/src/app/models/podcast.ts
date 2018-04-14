@@ -1,9 +1,9 @@
 export class Podcast{
 	constructor (		
-	numero: String,
-    descripcion: String,
-    duracion: String,
-    file: String,   
-    programa: String
+	public numero: String,
+    public descripcion: String,
+    public duracion: String,
+    public file: String,   
+    public programa: String
 		){}
 }

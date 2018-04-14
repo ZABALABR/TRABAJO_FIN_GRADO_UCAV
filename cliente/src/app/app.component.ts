@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   public identity ;     //propiedad para comprobar los datos del usuario logueado , y lo vamos a guardar en el local storage.
   public registrar = true;
   public errorMessage;
+  public msgRegistro;
   public token; //tb lo vamos a guardar en el local storage
 
   constructor(
@@ -135,6 +136,29 @@ console.log(this.registrar)
 
   onSubmitRegister(){
     console.log(this.usuario_reg);
+    this._servicioUsuario.registrar(this.usuario_reg).subscribe(
+         response => {
+        let user = response.usuario;
+        this.usuario_reg = user;
+        console.log(user);   
+        if(!user._id){
+          this.msgRegistro = 'Error al registrarse';
+        }else{
+          this.msgRegistro = 'El registro se ha realizado correctamente, identificate con '+this.usuario_reg.email;
+          this.usuario_reg = new Usuario('','','','','','ROLE_USER','');
+        }
+      },
+      error => {
+        var errorMessage = <any>error;
+
+        if(errorMessage != null){
+          var body = JSON.parse(error._body);
+          this.msgRegistro = body.message;
+
+          console.log(error);
+        }
+      }
+    );
   }
 }
 

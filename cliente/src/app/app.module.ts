@@ -5,9 +5,16 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+
+
+
+// usuario
+import { UsuarioEdicionComponent } from './components/usuario-edicion.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UsuarioEdicionComponent
   ],
   imports: [
     BrowserModule,
