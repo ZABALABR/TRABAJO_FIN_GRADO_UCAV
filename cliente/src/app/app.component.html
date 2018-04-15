@@ -25,21 +25,23 @@
 				{{identity.nombre}}  
 			</span>
 				
-					
+
+
 			<span class="btn btn-warning" (click)="logout()">
 				Cerrar sesión
 			</span>  
 
-		    <a href="#">
-					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-					Mis datos
-		    </a>	
+	
+		    <a [routerLink]="['/mi-cuenta']" [routerLinkActive]="['actived']">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				Mi cuenta
+			</a>
         </nav>	
 </div>
 <div class="clearfix"></div>
 <div *ngIf="identity" class="central col-lg-11">
 	<p>Estas identificado en la aplicación</p>
-	<usuario-edicion></usuario-edicion>
+	<router-outlet></router-outlet>
 </div>
 
 

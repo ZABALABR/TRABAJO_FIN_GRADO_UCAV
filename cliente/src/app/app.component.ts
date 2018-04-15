@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
      this.identity = this._servicioUsuario.getIdentity();  //regemos datos del localStorage
     this.token = this._servicioUsuario.getToken();
 
-    console.log(this.identity);
+    console.log('el identity es' + this.identity);
     console.log(this.token);
   }
 
