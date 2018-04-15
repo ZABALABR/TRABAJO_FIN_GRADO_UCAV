@@ -1,6 +1,51 @@
 <div class="col-lg-6">
 	<h1>{{titulo}}</h1>
+	<div *ngIf="msgActualizar">
+		<div class="alert alert-info">
+		  {{msgActualizar}}
+		</div>
+	</div>
 
+
+	<form #actualizaUsuarioForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">
+		  <fieldset>
+					<!-- <legend>Registrar....</legend> -->
+					<p>
+						<label>Nombre:</label>
+						<input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="usuario.nombre" class="form-control" required />
+						<span *ngIf="!nombre.valid && nombre.touched">
+							El nombre es obligatorio
+						</span>
+					</p>
+
+					<p>
+						<label>Apellidos:</label>
+						<input type="text" #apellidos="ngModel" name="apellidos" [(ngModel)]="usuario.apellidos" class="form-control" required />
+						<span *ngIf="!apellidos.valid && apellidos.touched">
+							Los apellidos son obligatorios
+						</span>
+					</p>
+
+					<p>
+						<label>Correo electrónico:</label>
+						<input type="email" #email="ngModel" name="email" [(ngModel)]="usuario.email" class="form-control" required />
+						<span *ngIf="!email.valid && email.touched">
+							El email es obligatorio
+						</span>
+					</p>
+
+					<div class="imagen_a_actualizar" *ngIf="usuario.imagen && usuario.imagen != 'null'">
+						<img src="{{url + 'obtener-logo-usuario/' + usuario.imagen}}" style="width: 50px;"/>
+					</div>
+					<p>
+							<label>Sube tu logotipo(foto):</label>
+							<input type="file" placeholder="Subir fichero imagen..." (change)="fileChangeEvent($event)" />
+					</p>		
+
+					<input type="submit" value="Actualizar" class="btn btn-primary" />
+          </fieldset>	
+	</form> 
+ 
 
 <!--
 	<div *ngIf="alertMessage">

@@ -1,9 +1,9 @@
 export class CanalRadio{
 	constructor (
 		
-		public nombre: String,
-	    public descripcion: String,    
-	    public imagen: String
+		public nombre: string,
+	    public descripcion: string,    
+	    public imagen: string
 
 		){}
 }

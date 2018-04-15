@@ -1,9 +1,9 @@
 export class Programa{
 	constructor (		
-	public nombre: String,
-    public descripcion: String,
-    public temporada: Number, //año   
-    public imagen: String,
-    public canalradio: String
+	public nombre: string,
+    public descripcion: string,
+    public temporada: number, //año   
+    public imagen: string,
+    public canalradio: string
 		){}
 }

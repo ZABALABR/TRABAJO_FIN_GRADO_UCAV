@@ -15,13 +15,16 @@ export class UsuarioEdicionComponent implements OnInit{
 	public usuario:Usuario;
 	public identity;
 	public token;
-	public alertMessage;
+	public msgActualizar;
 	public url:string;
 
 	constructor(
 		private _servicioUsuario:ServicioUsuario
 	){
 		this.titulo = 'Actualizar datos del usuario';
+		//this.usuario = new Usuario('','','','','','ROLE_USER','');
+
+		// recogemos del local storage los datos del usuario logado
 		this.identity = this._servicioUsuario.getIdentity();
     	this.token = this._servicioUsuario.getToken();
     	this.usuario = this.identity;
@@ -31,21 +34,24 @@ export class UsuarioEdicionComponent implements OnInit{
 	ngOnInit(){
 		console.log('usuario-edicion.component.ts cargado');
 	}
-/*
+
 	onSubmit(){
-		this._userService.updateUser(this.user).subscribe(
+		//console.log(this.usuario);
+		
+		
+		this._servicioUsuario.actualizaUsuario(this.usuario).subscribe(
 			response => {
-				if(!response.user){
-					this.alertMessage = 'El usuario no se ha actualizado';
+				if(!response.usuario){
+					this.msgActualizar = 'No se ha actualizado el usuario';
 				}else{
 					//this.user = response.user;
-					localStorage.setItem('identity', JSON.stringify(this.user));
-					document.getElementById("identity_name").innerHTML = this.user.name;
-
+					localStorage.setItem('identity', JSON.stringify(this.usuario));
+					document.getElementById("nombre_de_usuario").innerHTML = this.usuario.nombre;
+/*
 					if(!this.filesToUpload){
 						// Redireccion
 					}else{
-						this.makeFileRequest(this.url+'upload-image-user/'+this.user._id, [], this.filesToUpload).then(
+						this.makeFileRequest(this.url+'upload-image-user/'+this.usuario._id, [], this.filesToUpload).then(
 							(result: any) => {
 
 								this.user.image = result.image;
@@ -56,8 +62,8 @@ export class UsuarioEdicionComponent implements OnInit{
 							}
 						);
 					}
-
-					this.alertMessage = 'Datos actualizados correctamente';	
+*/
+					this.msgActualizar = 'Usuario actualizado correctamente';	
 				}
 			},
 	        error => {
@@ -65,7 +71,7 @@ export class UsuarioEdicionComponent implements OnInit{
 
 	            if(errorMessage != null){
 	              var body = JSON.parse(error._body);
-	              this.alertMessage = body.message;
+	              this.msgActualizar = body.message;
 
 	              console.log(error);
 	            }
@@ -73,6 +79,7 @@ export class UsuarioEdicionComponent implements OnInit{
 		);
 	}
 
+/*
 	public filesToUpload: Array<File>;
 
 	fileChangeEvent(fileInput: any){
