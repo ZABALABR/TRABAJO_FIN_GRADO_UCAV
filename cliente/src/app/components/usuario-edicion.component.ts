@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GLOBAL } from '../services/global';
+import { GLOBAL } from '../services/global';  //para poder acceder a la url
 import { ServicioUsuario } from  '../services/servicio.usuario';
 import { Usuario } from '../models/usuario';
 
@@ -44,25 +44,25 @@ export class UsuarioEdicionComponent implements OnInit{
 				if(!response.usuario){
 					this.msgActualizar = 'No se ha actualizado el usuario';
 				}else{
-					//this.user = response.user;
+					//this.usuario = response.usuario;
 					localStorage.setItem('identity', JSON.stringify(this.usuario));
 					document.getElementById("nombre_de_usuario").innerHTML = this.usuario.nombre;
-/*
+
 					if(!this.filesToUpload){
 						// Redireccion
 					}else{
-						this.makeFileRequest(this.url+'upload-image-user/'+this.usuario._id, [], this.filesToUpload).then(
+						this.makeFileRequest(this.url+'subir-logo-usuario/'+this.usuario._id, [], this.filesToUpload).then(
 							(result: any) => {
 
-								this.user.image = result.image;
-								localStorage.setItem('identity', JSON.stringify(this.user));
-
-								let image_path = this.url+'get-image-user/'+this.user.image;
-								document.getElementById('image-logged').setAttribute('src', image_path);
+								this.usuario.imagen = result.fichero;
+								localStorage.setItem('identity', JSON.stringify(this.usuario));
+								console.log(this.usuario);
+								let image_path = this.url+'obtener-logo-usuario/'+this.usuario.imagen;
+								document.getElementById('logo-usuario').setAttribute('src', image_path);
 							}
 						);
 					}
-*/
+
 					this.msgActualizar = 'Usuario actualizado correctamente';	
 				}
 			},
@@ -79,24 +79,29 @@ export class UsuarioEdicionComponent implements OnInit{
 		);
 	}
 
-/*
+
 	public filesToUpload: Array<File>;
 
 	fileChangeEvent(fileInput: any){
+		//recogemos los archivos seleccionado en el input
 		this.filesToUpload = <Array<File>>fileInput.target.files;
+		console.log(this.filesToUpload);
 	}
 
 	makeFileRequest(url: string, params: Array<string>, files: Array<File>){
+        //Recogemos el token ya que el  metodo de subida necesita autentificación 
 		var token = this.token;
 
 		return new Promise(function(resolve, reject){
+
+			//para simular el comportamiento de un formulario normal
 			var formData:any = new FormData();
 			var xhr = new XMLHttpRequest();
 
 			for(var i = 0; i < files.length; i++){
-				formData.append('image', files[i], files[i].name);
+				formData.append('fichero', files[i], files[i].name);
 			}
-
+            //aqui recogemos la respuesta del servidor
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState == 4){
 					if(xhr.status == 200){
@@ -107,12 +112,12 @@ export class UsuarioEdicionComponent implements OnInit{
 					
 				}
 			}
-
+            //aqui hacemos una peticion ajax para subir los ficheros
 			xhr.open('POST', url, true);
 			xhr.setRequestHeader('Authorization', token);
 			xhr.send(formData);
 		});
 
 	}
-*/
+
 }

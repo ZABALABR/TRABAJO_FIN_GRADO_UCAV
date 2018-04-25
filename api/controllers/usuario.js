@@ -143,7 +143,7 @@ function actualizarUsuario(req, res){
 function subirFicheroLogo(req, res){
 	//Recibe por parámetro el id del usuario
 	var userId = req.params.id;
-	var file_name = 'No subido...';
+	var file_name = 'Fichero no subido...';
 
 	if(req.files){
 		var file_path = req.files.fichero.path;

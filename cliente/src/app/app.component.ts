@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GLOBAL } from './services/global';  //para poder acceder a la url
 import { ServicioUsuario } from  './services/servicio.usuario';
 import { Usuario } from './models/usuario';
 @Component({
@@ -16,13 +17,14 @@ export class AppComponent implements OnInit{
   public errorMessage;
   public msgRegistro;
   public token; //tb lo vamos a guardar en el local storage
+  public url:string;
 
   constructor(
     private _servicioUsuario:ServicioUsuario
     ){
   	this.usuario = new Usuario('','','','','','ROLE_USER','');
     this.usuario_reg = new Usuario('','','','','','ROLE_USER','');
-    //this.url = GLOBAL.url;
+    this.url = GLOBAL.url;
   }
 
   ngOnInit(){
