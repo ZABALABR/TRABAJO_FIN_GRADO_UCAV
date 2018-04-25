@@ -3,10 +3,23 @@
 var path = require('path');
 var fs = require('fs');
 var mongoosePaginate = require('mongoose-pagination');
+var RSS = require('rss');
+
+
+
 
 var Canal = require('../models/canalRadio');
 var Programa = require('../models/programa');
 var Podcast = require('../models/podcast');
+
+
+var feed = new RSS({
+
+	title: 'Podcast Radio TFG UCAV',
+    description: 'RSS de podcast TFG UCAV',
+    feed_url: 'http://localhost:3977/api/rss.xml',
+    site_url: 'http://localhost:3977/api',
+});
 
 function getPodcast(req, res){
 
@@ -169,7 +182,66 @@ function obtenerFicheroPodcast(req, res){
 	});
 }
 
+function generarRSS(req, res){
+	console.log('entrando');
+	var programaId = req.params.programa;
 
+	if(!programaId){
+		var find = Podcast.find({}).sort('numero');
+	}else{
+		var find = Podcast.find({programa: programaId}).sort('numero');
+	}
+    
+ 
+
+    find.populate({
+		path: 'programa',
+		populate: {
+			path: 'canalradio',
+			model: 'CanalRadio'
+		}
+	}).exec(function(err, podcasts){
+		if(err){
+			console.log(err);
+			res.status(500).send({message: 'Error en la petición'});
+		}else{
+			if(!podcasts){
+				res.status(404).send({message: 'No hay podcasts en la BD.'});
+			}else{
+						podcasts.forEach( function(myDoc) { 
+						        
+						        feed.item({
+						        title:  'podcast RADIO UCAV TFG - ' + myDoc.descripcion,
+						        description: myDoc.descripcion,
+						        url: 'http://localhost:3977/api/podcast/audio/' + myDoc.file, // link to the item
+						        //guid: '1123', // optional - defaults to url	 
+						        });          
+						    	//print( "user: " + myDoc.name ); 
+
+
+						    });	
+				res.set('Content-Type', 'text/xml');
+                //res.send();
+
+				res.status(200).send(feed.xml());
+			}
+		}
+	});
+
+
+
+
+    
+    
+
+
+
+
+
+  
+
+
+}
 
 
 module.exports = {
@@ -179,7 +251,8 @@ module.exports = {
 	actualizarPodcast,
 	borrarPodcast,
 	subirFicheroPodcast,
-    obtenerFicheroPodcast 
+    obtenerFicheroPodcast,
+    generarRSS 
 
 
 };

@@ -15,6 +15,7 @@ api.put('/podcast/:id', md_auth.ensureAuth, PodcastController.actualizarPodcast)
 api.delete('/podcast/:id', md_auth.ensureAuth, PodcastController.borrarPodcast);
 api.post('/podcast/audio/subir/:id', [md_auth.ensureAuth, md_upload], PodcastController.subirFicheroPodcast);
 api.get('/podcast/audio/:ficheroPodcast', PodcastController.obtenerFicheroPodcast);
+api.get('/RSS', PodcastController.generarRSS);
 
 
 
