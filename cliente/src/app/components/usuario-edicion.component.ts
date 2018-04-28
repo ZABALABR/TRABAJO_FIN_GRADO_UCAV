@@ -19,7 +19,7 @@ export class UsuarioEdicionComponent implements OnInit{
 	public url:string;
 
 	constructor(
-		private _servicioUsuario:ServicioUsuario
+		private _servicioUsuario: ServicioUsuario
 	){
 		this.titulo = 'Actualizar datos del usuario';
 		//this.usuario = new Usuario('','','','','','ROLE_USER','');

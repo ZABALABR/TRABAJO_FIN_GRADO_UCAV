@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 
 
 // usuario
+import { InicioComponent } from './components/inicio.component';
 import { UsuarioEdicionComponent } from './components/usuario-edicion.component';
+import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuarioEdicionComponent
+    UsuarioEdicionComponent,
+    CanalRadioListadoComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

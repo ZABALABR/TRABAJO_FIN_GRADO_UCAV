@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GLOBAL } from './services/global';  //para poder acceder a la url
+
 import { ServicioUsuario } from  './services/servicio.usuario';
 import { Usuario } from './models/usuario';
 @Component({
@@ -20,10 +22,12 @@ export class AppComponent implements OnInit{
   public url:string;
 
   constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,    
     private _servicioUsuario:ServicioUsuario
     ){
-  	this.usuario = new Usuario('','','','','','ROLE_USER','');
-    this.usuario_reg = new Usuario('','','','','','ROLE_USER','');
+  	this.usuario = new Usuario('','','','','','ROL_USUARIO','');
+    this.usuario_reg = new Usuario('','','','','','ROL_USUARIO','');
     this.url = GLOBAL.url;
   }
 
@@ -31,7 +35,7 @@ export class AppComponent implements OnInit{
      this.identity = this._servicioUsuario.getIdentity();  //regemos datos del localStorage
     this.token = this._servicioUsuario.getToken();
 
-    console.log('el identity es' + this.identity);
+    console.log('el identity es ' + this.identity);
     console.log(this.token);
   }
 
@@ -61,7 +65,7 @@ export class AppComponent implements OnInit{
                                   }else{
                                       // Guardar en el localstorage con el  token 
                                       localStorage.setItem('token', token);
-                                      this.usuario = new Usuario('','','','','','ROLE_USER','');
+                                      this.usuario = new Usuario('','','','','','ROL_USUARIO','');
                                   }
                               },
                               error => {
@@ -106,7 +110,7 @@ export class AppComponent implements OnInit{
      localStorage.clear();
      this.identity = null;
      this.token = null;
-     //this._router.navigate(['/']);
+     this._router.navigate(['/']);
   }
 
   registro(){
@@ -147,7 +151,7 @@ console.log(this.registrar)
           this.msgRegistro = 'Error al registrarse';
         }else{
           this.msgRegistro = 'El registro se ha realizado correctamente, identificate con '+this.usuario_reg.email;
-          this.usuario_reg = new Usuario('','','','','','ROLE_USER','');
+          this.usuario_reg = new Usuario('','','','','','ROL_USUARIO','');
         }
       },
       error => {

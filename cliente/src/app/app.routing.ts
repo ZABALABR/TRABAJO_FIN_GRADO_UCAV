@@ -2,8 +2,12 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // import usuario
-//import { HomeComponent } from './components/home.component';
+
+import { InicioComponent } from './components/inicio.component';
 import { UsuarioEdicionComponent } from './components/usuario-edicion.component';
+
+// import canalRadio
+import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
 
 /*
 // import canalRadio
@@ -23,9 +27,18 @@ import { SongEditComponent } from './components/song-edit.component';
 
 */
 const appRoutes: Routes = [
-	{path: '', component: UsuarioEdicionComponent},
-    {path: 'mis-datos', component: UsuarioEdicionComponent}, 
-    {path: '**', component: UsuarioEdicionComponent}
+/*
+    {
+       path:'',
+       redirectTo:'canalesRadio/1',
+       pathMatch:'full'
+       
+    },
+ */   
+	{path: '', component: InicioComponent},
+	{path: 'canalesRadio/:page', component: CanalRadioListadoComponent},
+    {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
+    {path: '**', component: InicioComponent}
 /*
 	{path: 'artistas/:page', component: ArtistListComponent},
 	{path: 'crear-artista', component: ArtistAddComponent},

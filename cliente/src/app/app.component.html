@@ -1,59 +1,24 @@
-<div *ngIf="identity" class="navigation col-lg-1">
-		<h1>
-		  {{title}}
-		</h1>
-		<nav id="navigation">
-		    <a href="#">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					Buscar
-		    </a>	
-		    <a href="#">
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					Canales de Radio
-		    </a>	
-		    <a href="#">
-					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-					Programas
-		    </a>	
-		    <a href="#">
-					<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
-					Podscast
-		    </a>	
-		</nav>
-        <nav id="user_logged">
-
-		     <div class="imagen_usuario" >
-						<img id="logo-usuario" src="{{url + 'obtener-logo-usuario/' + identity.imagen}}" style="width: 50px;"/>
-			</div>        	
-      		<span id="nombre_de_usuario">
-				{{identity.nombre}}  
-			</span>
-				
 
 
-			<span class="btn btn-warning" (click)="logout()">
-				Cerrar sesión
-			</span>  
 
+
+
+
+
+
+
+
+
+<div [class.hidden]="!identity" class="central col-lg-11">
 	
-		    <a [routerLink]="['/mi-cuenta']" [routerLinkActive]="['actived']">
-				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-				Mi cuenta
-			</a>
-        </nav>	
-</div>
-<div class="clearfix"></div>
-<div *ngIf="identity" class="central col-lg-11">
-	<p>Estas identificado en la aplicación</p>
 	<router-outlet></router-outlet>
 </div>
 
 
 
-
-<div *ngIf="!identity" class="col-lg-12">
+<div *ngIf="!identity" class="col-lg-11">
      <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-11">
         			<h1>PODCAST-RADIO</h1>
         
         </div>
@@ -145,4 +110,58 @@
 
 	</div>
   
+</div>
+
+
+
+
+
+<div *ngIf="identity" class="menu col-lg-1">
+		<h1 class="titulo-cabecera">
+		 <a [routerLink]="['/']" >	
+		 	<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+		  {{title}}
+		</a>
+		</h1>
+		<nav id="navigation">
+		    <a href="#">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					Buscar
+		    </a>	
+		    <a [routerLink]="['/canalesRadio',1]" [routerLinkActive]="['actived']">
+					<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
+					Canales de Radio
+		    </a>	
+		    <a href="#">
+					<span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+					Programas
+		    </a>	
+		    <a href="#">
+					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+					Podscast
+		    </a>	
+		</nav>
+        <nav id="usuario_identificado">
+
+		     <div class="imagen_usuario" >
+						<img id="logo-usuario" src="{{url + 'obtener-logo-usuario/' + identity.imagen}}" />
+			</div>        	
+      		<span id="nombre_de_usuario">
+				{{identity.nombre}}  
+			</span>
+				
+
+
+
+	
+		    <a [routerLink]="['/mi-cuenta']"  [routerLinkActive]="['actived']" >
+				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				Mi cuenta
+			</a>
+
+			<a (click)="logout()" class="boton-salir">
+				<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+				Salir
+			</a>			
+        </nav>	
 </div>
