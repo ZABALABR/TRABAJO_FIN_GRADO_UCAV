@@ -86,3 +86,9 @@ form {
 .boton-salir{
     cursor:pointer;
 }
+
+
+.canalRadio_imagen_editar img{
+   width: 150px;
+
+}

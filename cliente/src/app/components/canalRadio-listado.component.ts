@@ -4,17 +4,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GLOBAL } from '../services/global';
 import { ServicioUsuario } from  '../services/servicio.usuario';
 
-/*
-import { ArtistService } from '../services/artist.service';
-
-*/
+import { ServicioCanalRadio } from  '../services/servicio.canalRadio';
 import { CanalRadio } from '../models/canalRadio';
 
 @Component({
 	selector: 'canalRadio-listado',
 	templateUrl: '../views/canalRadio-listado.html',
-	//providers: [ServicioUsuario, ArtistService]
-	providers: [ServicioUsuario]
+
+	providers: [ServicioUsuario,ServicioCanalRadio]
 })
 
 export class CanalRadioListadoComponent implements OnInit{
@@ -23,21 +20,23 @@ export class CanalRadioListadoComponent implements OnInit{
 	public identity;
 	public token;
 	public url: string;
-	public next_page;
-	public prev_page;
+	public pag_sig;
+	public pag_ant;
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _router: Router,
 		
-		private _servicioUsuario: ServicioUsuario
+		private _servicioUsuario: ServicioUsuario,
+		private _servicioCanalRadio: ServicioCanalRadio,
+
 	){
 		this.titulo = 'Canales de Radio';
 		this.identity = this._servicioUsuario.getIdentity();
     	this.token = this._servicioUsuario.getToken();
 		this.url = GLOBAL.url;
-		this.next_page = 1;
-		this.prev_page = 1;
+		this.pag_sig = 1;
+		this.pag_ant = 1;
 	}
 
 	ngOnInit(){
@@ -45,29 +44,29 @@ export class CanalRadioListadoComponent implements OnInit{
 		this.url = GLOBAL.url;
 
 		//  el listado de Canales de Radio
-	
+	    this.dameCanalesRadio();
 	}
-/*
-	getArtists(){
+
+	dameCanalesRadio(){
 		this._route.params.forEach((params: Params) =>{
 				let page = +params['page'];
 				if(!page){
 					page = 1;
 				}else{
-					this.next_page = page+1;
-					this.prev_page = page-1;
+					this.pag_sig = page+1;
+					this.pag_ant = page-1;
 
-					if(this.prev_page == 0){
-						this.prev_page = 1;
+					if(this.pag_ant == 0){
+						this.pag_ant = 1;
 					}
 				}
 
-				this._artistService.getArtists(this.token, page).subscribe(
+				this._servicioCanalRadio.dameCanalesRadio(this.token, page).subscribe(
 					response => {
-						if(!response.artists){
+						if(!response.canales){
 							this._router.navigate(['/']);
 						}else{
-							this.artists = response.artists;
+							this.canalesRadio = response.canales;
 						}
 					},
 					error => {
@@ -83,7 +82,7 @@ export class CanalRadioListadoComponent implements OnInit{
 				);
 		});
 	}
-
+/*
 	public confirmado;
 	onDeleteConfirm(id){
 		this.confirmado = id;

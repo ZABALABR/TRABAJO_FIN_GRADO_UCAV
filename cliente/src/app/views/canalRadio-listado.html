@@ -1,10 +1,43 @@
 <div class="head-page"   *ngIf="identity">
     <h1>{{titulo}}</h1>
-    <a  *ngIf="identity && identity.rol == 'ROL_ADMIN'" class="btn btn-default">
-		Añadir canal de Radio
+    <a  [routerLink]="['/crear-canalRadio']" *ngIf="identity && identity.rol == 'ROL_ADMIN'" class="btn btn-default">
+		Crear canal de Radio
 	</a>
 </div>
 
+<div class="clearfix"></div>
+<ul class="listado-CanalesRadio" *ngIf="identity">
+    <li *ngFor="let canalRadio of canalesRadio" class="col-lg-3 artist-item">
+        {{canalRadio.nombre}}
+    	<!--
+		<div class="canalRadio-imagen">
+			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}"/>
+		</div>
+		<div class="canalRadio-nombre">
+			<a [routerLink]="['/canalRadio', canalRadio._id]">
+				{{canalRadio.nombre}}
+			</a>
+
+			<div class="buttons" *ngIf="identity.rol == 'ROL_ADMIN'">
+				<a [routerLink]="['/editar-artista', artist._id]" class="btn btn-sm btn-warning">Editar</a>
+				<a (click)="onDeleteConfirm(artist._id)" class="btn btn-sm btn-danger">
+					Borrar
+				</a>
+			</div>
+
+			<div class="seguro" *ngIf="confirmado == artist._id">
+				<a (click)="onDeleteArtist(artist._id)" class="btn btn-sm btn-danger">
+					Eliminar
+				</a>
+				<a (click)="onCancelArtist()" class="btn btn-sm btn-primary">
+					Cancelar
+				</a>
+			</div>
+		</div>
+	-->
+	</li>
+
+</ul>
 
 <!--
 

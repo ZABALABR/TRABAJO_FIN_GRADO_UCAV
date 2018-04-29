@@ -12,13 +12,17 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './components/inicio.component';
 import { UsuarioEdicionComponent } from './components/usuario-edicion.component';
 import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
+import { CanalRadioCrearComponent } from './components/canalRadio-crear.component';
+import { CanalRadioEditarComponent } from './components/canalRadio-editar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsuarioEdicionComponent,
     CanalRadioListadoComponent,
-    InicioComponent
+    InicioComponent,
+    CanalRadioCrearComponent,
+    CanalRadioEditarComponent
   ],
   imports: [
     BrowserModule,
