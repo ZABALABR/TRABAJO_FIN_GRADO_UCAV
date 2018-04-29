@@ -3,29 +3,36 @@
     <a  [routerLink]="['/crear-canalRadio']" *ngIf="identity && identity.rol == 'ROL_ADMIN'" class="btn btn-default">
 		Crear canal de Radio
 	</a>
+
+	<ul class="pagination pull-right">
+		<li><a [routerLink]="['/canalesRadio', pag_ant]">&laquo;</a></li>
+		<li><a [routerLink]="['/canalesRadio', pag_sig]">&raquo;</a></li>
+	</ul>
+
 </div>
 
 <div class="clearfix"></div>
 <ul class="listado-CanalesRadio" *ngIf="identity">
     <li *ngFor="let canalRadio of canalesRadio" class="col-lg-3 artist-item">
         {{canalRadio.nombre}}
-    	<!--
+    	
 		<div class="canalRadio-imagen">
-			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}"/>
+			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}" style="width:100px"/>
 		</div>
+		
 		<div class="canalRadio-nombre">
 			<a [routerLink]="['/canalRadio', canalRadio._id]">
 				{{canalRadio.nombre}}
 			</a>
 
 			<div class="buttons" *ngIf="identity.rol == 'ROL_ADMIN'">
-				<a [routerLink]="['/editar-artista', artist._id]" class="btn btn-sm btn-warning">Editar</a>
-				<a (click)="onDeleteConfirm(artist._id)" class="btn btn-sm btn-danger">
-					Borrar
+				<a [routerLink]="['/editar-canalRadio', canalRadio._id]" class="btn btn-sm btn-warning">Modificar</a>
+				<a href="#" class="btn btn-sm btn-danger">
+					Eliminar
 				</a>
 			</div>
-
-			<div class="seguro" *ngIf="confirmado == artist._id">
+            <!--   
+			<div class="seguro" *ngIf="confirmado == canalRadio._id">
 				<a (click)="onDeleteArtist(artist._id)" class="btn btn-sm btn-danger">
 					Eliminar
 				</a>
@@ -33,7 +40,9 @@
 					Cancelar
 				</a>
 			</div>
+	       -->		
 		</div>
+	<!--	
 	-->
 	</li>
 
