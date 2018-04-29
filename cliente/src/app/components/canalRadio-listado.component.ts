@@ -82,23 +82,23 @@ export class CanalRadioListadoComponent implements OnInit{
 				);
 		});
 	}
-/*
+
 	public confirmado;
-	onDeleteConfirm(id){
+	siConfirmarBorrado(id){
 		this.confirmado = id;
 	}
 
-	onCancelArtist(){
+	siCancelarCanalRadio(){
 		this.confirmado = null;
 	}
 
-	onDeleteArtist(id){
-		this._artistService.deleteArtist(this.token, id).subscribe(
+	siBorrarCanalRadio(id){
+		this._servicioCanalRadio.eliminarCanalRadio(this.token, id).subscribe(
 			response => {
-				if(!response.artist){
-					alert('Error en el servidor');
+				if(!response.canal){
+					alert('Error en el servidor al intentar borrar el canal');
 				}
-				this.getArtists();
+				this.dameCanalesRadio();
 			},
 			error => {
 				var errorMessage = <any>error;
@@ -112,7 +112,7 @@ export class CanalRadioListadoComponent implements OnInit{
 			}	
 		);
 	}
-*/
+
 
 
 }

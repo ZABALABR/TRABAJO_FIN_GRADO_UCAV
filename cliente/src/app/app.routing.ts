@@ -10,6 +10,7 @@ import { UsuarioEdicionComponent } from './components/usuario-edicion.component'
 import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
 import { CanalRadioCrearComponent } from './components/canalRadio-crear.component';
 import { CanalRadioEditarComponent } from './components/canalRadio-editar.component';
+import { CanalRadioDetalleComponent } from './components/canalRadio-detalle.component';
 
 /*
 // import canalRadio
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
 	{path: 'canalesRadio/:page', component: CanalRadioListadoComponent},
 	{path: 'crear-canalRadio', component: CanalRadioCrearComponent},
 	{path: 'editar-canalRadio/:id', component: CanalRadioEditarComponent},
+	{path: 'canalRadio/:id', component: CanalRadioDetalleComponent},
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
 /*

@@ -2,48 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { GLOBAL } from '../services/global';
-
 import { ServicioUsuario } from  '../services/servicio.usuario';
 import { ServicioCanalRadio } from  '../services/servicio.canalRadio';
-
 import { CanalRadio } from '../models/canalRadio';
 
 
 
-import { ServicioSubirFichero } from '../services/servicio.subirFichero';
+
+
+
+
+
 
 
 @Component({
-	selector: 'canalRadio-editar',
-	templateUrl: '../views/canalRadio-crear.html',
-	providers: [ServicioUsuario, ServicioCanalRadio,ServicioSubirFichero]
+	selector: 'canalRadio-detalle',
+	templateUrl: '../views/canalRadio-detalle.html',
+	providers: [ServicioUsuario, ServicioCanalRadio]
 })
 
-export class CanalRadioEditarComponent implements OnInit{
-	public titulo: string;
+export class CanalRadioDetalleComponent implements OnInit{
+	
 	public canalRadio: CanalRadio;
 	public identity;
 	public token;
 	public url: string;
 	public alertMensaje;
-	public editada;
+	
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _router: Router,
 		private _servicioUsuario: ServicioUsuario,
-		private _servicioCanalRadio: ServicioCanalRadio,
+		private _servicioCanalRadio: ServicioCanalRadio
 
 		
-		private _servicioSubirFichero: ServicioSubirFichero
+		
 		
 	){
-		this.titulo = 'Modificar canal de Radio';
+		
 		this.identity = this._servicioUsuario.getIdentity();
 		this.token = this._servicioUsuario.getToken();
 		this.url = GLOBAL.url;
-		this.canalRadio = new CanalRadio('','','');
-		this.editada = true;
+		
+		
 	}
 
 	ngOnInit(){
@@ -66,6 +68,8 @@ export class CanalRadioEditarComponent implements OnInit{
 						this._router.navigate(['/']);
 					}else{
 						this.canalRadio = response.canal;
+
+						//solicitamos los programas de este canal de radio.
 					}
 				},
 				error => {
@@ -97,23 +101,6 @@ export class CanalRadioEditarComponent implements OnInit{
 						this.alertMensaje = '¡Canal de Radio actualizado correctamente!';
 
 						
-						if(!this.ficherosASubir){
-							this._router.navigate(['/canalesRadio', response.canal._id ]);
-						}else{
-							//Subir el fichero con logotipo/imagen del canal de radio
-							//alert('imagen subida' + this.ficherosASubir);
-							this._servicioSubirFichero.makeFileRequest(this.url+'subir-fichero-canal/'+id, [], this.ficherosASubir, this.token, 'image')
-								.then(
-
-									(result) => {
-										//alert('imagen subida' + this.canalRadio.imagen);
-										this._router.navigate(['/canalesRadio', response.canal._id]);
-									},
-									(error) => {
-										console.log(error);
-									}
-								);
-						}
 						
 					}
 
@@ -137,9 +124,6 @@ export class CanalRadioEditarComponent implements OnInit{
 
 
 
-	public ficherosASubir: Array<File>;
-	fileChangeEvent(fileInput: any){
-		this.ficherosASubir = <Array<File>>fileInput.target.files;
-	}
+
 
 }

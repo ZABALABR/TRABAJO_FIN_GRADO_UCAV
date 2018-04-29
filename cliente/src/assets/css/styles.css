@@ -23,7 +23,18 @@ form {
     padding-bottom: 4px;
 }
 
+.central{
+    height: 100%;
+    overflow-y: scroll;
+}
 
+.seguro{
+    margin-top: -30px;
+    background: #641E16;  
+    position: absolute;
+    height: 40px;
+    
+}
 /*MENU LATERAL*/
 .titulo-cabecera {
     font-size: 20px;
@@ -88,7 +99,84 @@ form {
 }
 
 
+
+
+
 .canalRadio_imagen_editar img{
    width: 150px;
+
+}
+
+.listado-CanalesRadio{
+    margin: 0px;
+    padding: 0px;
+    margin-top: 30px;
+    list-style: none;
+    min-height: 400px;
+}
+
+.canalRadio-item{
+    width: 23%;
+    margin: 0px;
+    padding: 0px;
+    height: 317px;
+    border: 1px solid #444;
+    margin-left: 20px;
+    
+    background: #641E16;   /*#222326*/
+    /*border-radius: 100px;
+    overflow: hidden; */
+}
+
+.canalRadio-item .canalRadio-imagen{
+    height: 245px;
+    
+    width: 100%;
+    overflow: hidden;
+    background:  black;
+    
+    
+
+    
+}
+
+.canalRadio-item .canalRadio-imagen img{
+    
+    height: 100%;
+    width: 100%;
+
+
+
+}
+
+.canalRadio-item .canalRadio-nombre {
+    
+    color: white;
+    padding: 10px;
+    background: #black;
+
+
+}
+
+.canalRadio-item .canalRadio-nombre a{
+    
+    color: white;
+   
+
+}
+
+
+#canalRadio-head-card .imagen{
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+    float: left;
+    margin-right: 30px;
+
+}
+
+#canalRadio-head-card .imagen img{
+   height: 170px;
+   width: 100%; 
 
 }

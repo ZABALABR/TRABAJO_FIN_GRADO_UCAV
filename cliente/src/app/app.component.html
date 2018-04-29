@@ -114,8 +114,7 @@
 
 
 
-
-
+<!--class="menu col-lg-1"-->
 <div *ngIf="identity" class="menu col-lg-1">
 		<h1 class="titulo-cabecera">
 		 <a [routerLink]="['/']" >	
@@ -123,7 +122,7 @@
 		  {{title}}
 		</a>
 		</h1>
-		<nav id="navigation">
+		<nav id="navigation" >
 		    <a href="#">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					Buscar
@@ -141,7 +140,7 @@
 					Podscast
 		    </a>	
 		</nav>
-        <nav id="usuario_identificado">
+        <nav id="usuario_identificado" >
 
 		     <div class="imagen_usuario" >
 						<img id="logo-usuario" src="{{url + 'obtener-logo-usuario/' + identity.imagen}}" />

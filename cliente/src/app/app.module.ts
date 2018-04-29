@@ -14,6 +14,7 @@ import { UsuarioEdicionComponent } from './components/usuario-edicion.component'
 import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
 import { CanalRadioCrearComponent } from './components/canalRadio-crear.component';
 import { CanalRadioEditarComponent } from './components/canalRadio-editar.component';
+import { CanalRadioDetalleComponent } from './components/canalRadio-detalle.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CanalRadioEditarComponent } from './components/canalRadio-editar.compon
     CanalRadioListadoComponent,
     InicioComponent,
     CanalRadioCrearComponent,
-    CanalRadioEditarComponent
+    CanalRadioEditarComponent,
+    CanalRadioDetalleComponent
   ],
   imports: [
     BrowserModule,
