@@ -6,7 +6,7 @@
 		<div class="data">
      		<h1>{{canalRadio.nombre}}</h1>
      		<p class="description">{{canalRadio.descripcion}}</p>
-     		<a *ngIf="identity.rol == 'ROL_ADMIN'" href="#" class="btn btn-default">
+     		<a *ngIf="identity.rol == 'ROL_ADMIN'" [routerLink]="['/crear-programa', canalRadio._id]"  class="btn btn-default">
 				Añadir programa
 			</a>
      	 </div>

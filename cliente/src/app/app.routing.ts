@@ -12,6 +12,13 @@ import { CanalRadioCrearComponent } from './components/canalRadio-crear.componen
 import { CanalRadioEditarComponent } from './components/canalRadio-editar.component';
 import { CanalRadioDetalleComponent } from './components/canalRadio-detalle.component';
 
+
+// import programa
+
+import { ProgramaCrearComponent } from './components/programa-crear.component';
+
+
+
 /*
 // import canalRadio
 import { ArtistListComponent } from './components/artist-list.component';
@@ -20,6 +27,10 @@ import { ArtistEditComponent } from './components/artist-edit.component';
 import { ArtistDetailComponent } from './components/artist-detail.component';
 
 // import programa
+
+import { ProgramaCrearComponent } from './components/programa-crear.component';
+
+
 import { AlbumAddComponent } from './components/album-add.component';
 import { AlbumEditComponent } from './components/album-edit.component';
 import { AlbumDetailComponent } from './components/album-detail.component';
@@ -43,6 +54,7 @@ const appRoutes: Routes = [
 	{path: 'crear-canalRadio', component: CanalRadioCrearComponent},
 	{path: 'editar-canalRadio/:id', component: CanalRadioEditarComponent},
 	{path: 'canalRadio/:id', component: CanalRadioDetalleComponent},
+	{path: 'crear-programa/:programa', component: ProgramaCrearComponent},
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
 /*
