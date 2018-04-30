@@ -19,29 +19,13 @@ import { ProgramaCrearComponent } from './components/programa-crear.component';
 import { ProgramaEditarComponent } from './components/programa-editar.component';
 import { ProgramaDetalleComponent } from './components/programa-detalle.component';
 
+// import de los podcast
+
+import { PodcastCrearComponent } from './components/podcast-crear.component';
 
 
-/*
-// import canalRadio
-import { ArtistListComponent } from './components/artist-list.component';
-import { ArtistAddComponent } from './components/artist-add.component';
-import { ArtistEditComponent } from './components/artist-edit.component';
-import { ArtistDetailComponent } from './components/artist-detail.component';
-
-// import programa
-
-import { ProgramaCrearComponent } from './components/programa-crear.component';
 
 
-import { AlbumAddComponent } from './components/album-add.component';
-import { AlbumEditComponent } from './components/album-edit.component';
-import { AlbumDetailComponent } from './components/album-detail.component';
-
-// import podcast
-import { SongAddComponent } from './components/song-add.component';
-import { SongEditComponent } from './components/song-edit.component';
-
-*/
 const appRoutes: Routes = [
 /*
     {
@@ -56,9 +40,10 @@ const appRoutes: Routes = [
 	{path: 'crear-canalRadio', component: CanalRadioCrearComponent},
 	{path: 'editar-canalRadio/:id', component: CanalRadioEditarComponent},
 	{path: 'canalRadio/:id', component: CanalRadioDetalleComponent},
-	{path: 'crear-programa/:canalRadio', component: ProgramaCrearComponent},
+	{path: 'crear-programa/:canalRadio', component: ProgramaCrearComponent},//le pasamos el id del canal de radio
 	{path: 'editar-programa/:id', component: ProgramaEditarComponent},
 	{path: 'programa/:id', component: ProgramaDetalleComponent},
+	{path: 'crear-podcast/:programa', component: PodcastCrearComponent}, //le pasamos el id del program
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
 /*

@@ -61,19 +61,19 @@ export class ProgramaDetalleComponent implements OnInit{
 
 	damePrograma(){
 			console.log('el metodo funciona....')
-	}		
-/*		
+			
+	
 		this._route.params.forEach((params: Params) => {
 			let id = params['id'];
 
-			this._albumService.getAlbum(this.token, id).subscribe(
+			this._servicioPrograma.damePrograma(this.token, id).subscribe(
 				response => {
-					if(!response.album){
+					if(!response.programa){
 						this._router.navigate(['/']);
 					}else{
-						this.album = response.album;
+						this.programa = response.programa;
 
-						
+						/*
 						// Sacar las canciones
 						this._songService.getSongs(this.token, response.album._id).subscribe(
 						response => {
@@ -93,7 +93,7 @@ export class ProgramaDetalleComponent implements OnInit{
 					          console.log(error);
 					        }
 						});
-						
+						*/
 
 					}
 				},
@@ -113,6 +113,7 @@ export class ProgramaDetalleComponent implements OnInit{
       
 	}
 
+/*
 	public confirmado;
 	onDeleteConfirm(id){
 		this.confirmado = id;

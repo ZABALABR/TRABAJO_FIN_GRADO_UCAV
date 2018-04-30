@@ -1,0 +1,55 @@
+
+
+
+<div class="col-lg-6" *ngIf="identity && identity.rol == 'ROL_ADMIN'">
+	<h1>{{titulo}}</h1>
+
+	<div *ngIf="alertMensaje">
+		<div class="alert alert-info">
+		  {{alertMensaje}}
+		</div>
+	</div>
+
+	<form #formPodcast="ngForm" (ngSubmit)="onSubmit()">
+		<p>
+			<label>Número</label>
+			<input type="text" #numero="ngModel" name="numero" [(ngModel)]="podcast.numero" required class="form-control"/>
+			<span *ngIf="!numero.valid && numero.touched">
+				El número del podcast es obligatorio
+			</span>
+		</p>
+
+		<p>
+			<label>Descripción</label>
+			<input type="text" #descripcion="ngModel" name="descripcion" [(ngModel)]="podcast.descripcion" required class="form-control"/>
+			<span *ngIf="!descripcion.valid && descripcion.touched">
+				La descripción del podcast obligatorio
+			</span>
+		</p>
+
+		<p>
+			<label>Duración</label>
+			<input type="text" #duracion="ngModel" name="duracion" [(ngModel)]="podcast.duracion" required class="form-control" />
+			<span *ngIf="!duracion.valid && duracion.touched">
+				La duración del podcast es obligatorio
+			</span>
+		</p>
+
+		<div *ngIf="editable">
+			<div class="podcast_fichero_editar" *ngIf="podcast.file && podcast.file != 'null'">
+				<audio controls>
+					<source src="{{ url + 'podcast/audio/' + podcast.file }}" type="audio/mpeg" />
+						El navegador web no soporta la reproducción de audio
+				</audio>
+			</div>
+
+			<p>
+				<label> Sube el fichero de podcast</label>
+				<input type="file" placeholder="Subir fichero..." (change)="fileChangeEvent($event)" />
+			</p>
+		</div>
+
+		<input type="submit" value="{{titulo}}" [disabled]="!formPodcast.form.valid" class="btn btn-success"/>
+	</form>
+</div>
+
