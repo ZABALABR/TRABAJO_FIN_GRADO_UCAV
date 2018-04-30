@@ -1,56 +1,55 @@
-<h1>{{titulo}}</h1>
 
 
-<!--
-<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+
+
+<div class="col-lg-6" *ngIf="identity && identity.rol == 'ROL_ADMIN'">
 	<h1>{{titulo}}</h1>
 
-	<div *ngIf="alertMessage">
+	<div *ngIf="alertMensaje">
 		<div class="alert alert-info">
-		  {{alertMessage}}
+		  {{alertMensaje}}
 		</div>
 	</div>
 
-	<form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
+	<form #formPrograma="ngForm" (ngSubmit)="onSubmit()">
 
 		<p>
-			<label>Titulo</label>
-			<input type="text" #title="ngModel" name="title" [(ngModel)]="album.title" required class="form-control"/>
-			<span *ngIf="!title.valid && title.touched">
-				El titulo es obligatorio
+			<label>Nombre</label>
+			<input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="programa.nombre" required class="form-control"/>
+			<span *ngIf="!nombre.valid && nombre.touched">
+				El nombre del programa es obligatorio
 			</span>
 		</p>
 
 		<p>
 			<label>Descripción</label>
-			<textarea #description="ngModel" name="description" [(ngModel)]="album.description" required class="form-control"></textarea>
-			<span *ngIf="!description.valid && description.touched">
+			<textarea #descripcion="ngModel" name="descripcion" [(ngModel)]="programa.descripcion" required class="form-control"></textarea>
+			<span *ngIf="!descripcion.valid && descripcion.touched">
 				La descripción es obligatoria
 			</span>
 		</p>
 
 		<p>
-			<label>Año</label>
-			<input type="text" #year="ngModel" name="year" [(ngModel)]="album.year" required class="form-control"/>
-			<span *ngIf="!year.valid && year.touched">
-				El año es obligatorio
+			<label>Temporada</label>
+			<input type="text" #temporada="ngModel" name="temporada" [(ngModel)]="programa.temporada" required class="form-control"/>
+			<span *ngIf="!temporada.valid && temporada.touched">
+				La temporada es obligatoria
 			</span>
 		</p>
 
-		<div *ngIf="is_edit">
-			<div class="album_image_for_edit" *ngIf="album.image && album.image != 'null'">
-				<img src="{{url + 'get-image-album/' + album.image }}" />
+		<div *ngIf="editable">
+			<div class="programa_imagen_editar" *ngIf="programa.imagen && programa.imagen != 'null'">
+				<img src="{{url + 'programa/logotipo/' + programa.imagen }}" />
 			</div>
 
 			<p>
-				<label> Sube la imagen del album</label>
-				<input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)" />
+				<label> Sube el logotipo del programa</label>
+				<input type="file" placeholder="Subir logotipo..." (change)="fileChangeEvent($event)" />
 			</p>
 		</div>
 
-		<input type="submit" value="{{titulo}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
+		<input type="submit" value="{{titulo}}" [disabled]="!formPrograma.form.valid" class="btn btn-success"/>
 
 	</form>
 </div>
 
--->

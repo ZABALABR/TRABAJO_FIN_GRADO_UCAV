@@ -8,14 +8,14 @@ import { ServicioCanalRadio } from  '../services/servicio.canalRadio';
 import { CanalRadio } from '../models/canalRadio';
 
 
-//import { ServicioPrograma } from '../services/servcio.programa';
+import { ServicioPrograma } from '../services/servicio.programa';
 
 import { Programa } from '../models/programa';
 
 @Component({
 	selector: 'programa-crear',
 	templateUrl: '../views/programa-crear.html',
-	providers: [ServicioUsuario, ServicioCanalRadio]
+	providers: [ServicioUsuario, ServicioCanalRadio,ServicioPrograma]
 })
 
 export class ProgramaCrearComponent implements OnInit{
@@ -25,13 +25,15 @@ export class ProgramaCrearComponent implements OnInit{
 	public identity;
 	public token;
 	public url: string;
-	public alertMessage;
+	public alertMensaje;
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _router: Router,
         private _servicioUsuario: ServicioUsuario,
-		private _servicioCanalRadio: ServicioCanalRadio
+		private _servicioCanalRadio: ServicioCanalRadio,
+		private _servicioPrograma: ServicioPrograma
+
 	){
 		this.titulo = 'Crear nuevo programa de radio';
 		this.identity = this._servicioUsuario.getIdentity();
@@ -46,21 +48,24 @@ export class ProgramaCrearComponent implements OnInit{
 	}
 
 	onSubmit(){
-		/*
+		console.log(this.programa);
+		
 		this._route.params.forEach((params: Params) => {
-			let artist_id = params['artist'];
-			this.album.artist = artist_id;
-
-			this._albumService.addAlbum(this.token, this.album).subscribe(
+			//recogemos de la url el parametro canalRadio que tienen el id del canal de radio, el nombre del parametro es el que esta definido en el app.routing para el path {path: 'crear-programa/:canalRadio', component: ProgramaCrearComponent},
+			let canalRadio_id = params['canalRadio'];
+			this.programa.canalradio = canalRadio_id;
+            console.log(this.programa);
+            
+			this._servicioPrograma.crearPrograma(this.token, this.programa).subscribe(
 				response => {
 					
-					if(!response.album){
-						this.alertMessage = 'Error en el servidor';
+					if(!response.programa){
+						this.alertMensaje = 'Error en el servidor';
 					}else{
-						this.alertMessage = '¡El album se ha creado correctamente!';
-						this.album = response.album;
+						this.alertMensaje = '¡El programa se ha creado correctamente!';
+						this.programa = response.programa;
 						
-						this._router.navigate(['/editar-album', response.album._id]);
+						this._router.navigate(['/editar-programa', response.programa._id]);
 					}
 
 				},
@@ -69,16 +74,16 @@ export class ProgramaCrearComponent implements OnInit{
 
 			        if(errorMessage != null){
 			          var body = JSON.parse(error._body);
-			          this.alertMessage = body.message;
+			          this.alertMensaje = body.message;
 
 			          console.log(error);
 			        }
 				}	
 			);
-
+             
 
 		});
-		*/
+		
 	}
 
 }

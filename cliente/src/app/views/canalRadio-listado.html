@@ -14,12 +14,10 @@
 <div class="clearfix"></div>
 <ul class="listado-CanalesRadio" *ngIf="identity">
     <li *ngFor="let canalRadio of canalesRadio" class="col-lg-3 canalRadio-item">
-       
-    	
-		<div class="canalRadio-imagen">
+       	<div class="canalRadio-imagen">
 			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}" />
 		</div>
-		
+    	
 		<div class="canalRadio-nombre">
 			<a [routerLink]="['/canalRadio', canalRadio._id]">
 				{{canalRadio.nombre}}
@@ -42,6 +40,10 @@
 			</div>
 	       		
 		</div>
+
+		
+	
+		
 	<!--	
 	-->
 	</li>

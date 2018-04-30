@@ -16,6 +16,8 @@ import { CanalRadioDetalleComponent } from './components/canalRadio-detalle.comp
 // import programa
 
 import { ProgramaCrearComponent } from './components/programa-crear.component';
+import { ProgramaEditarComponent } from './components/programa-editar.component';
+import { ProgramaDetalleComponent } from './components/programa-detalle.component';
 
 
 
@@ -54,7 +56,9 @@ const appRoutes: Routes = [
 	{path: 'crear-canalRadio', component: CanalRadioCrearComponent},
 	{path: 'editar-canalRadio/:id', component: CanalRadioEditarComponent},
 	{path: 'canalRadio/:id', component: CanalRadioDetalleComponent},
-	{path: 'crear-programa/:programa', component: ProgramaCrearComponent},
+	{path: 'crear-programa/:canalRadio', component: ProgramaCrearComponent},
+	{path: 'editar-programa/:id', component: ProgramaEditarComponent},
+	{path: 'programa/:id', component: ProgramaDetalleComponent},
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
 /*

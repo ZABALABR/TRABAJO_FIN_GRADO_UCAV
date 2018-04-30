@@ -99,15 +99,17 @@ form {
 }
 
 
+/*canales de radio y programas*/
 
 
-
+.programa_imagen_editar img,
 .canalRadio_imagen_editar img{
    width: 150px;
 
 }
 
-.listado-CanalesRadio{
+.listado-CanalesRadio,
+.listado-programas{
     margin: 0px;
     padding: 0px;
     margin-top: 30px;
@@ -115,7 +117,8 @@ form {
     min-height: 400px;
 }
 
-.canalRadio-item{
+.canalRadio-item,
+.programa-item{
     width: 23%;
     margin: 0px;
     padding: 0px;
@@ -128,7 +131,8 @@ form {
     overflow: hidden; */
 }
 
-.canalRadio-item .canalRadio-imagen{
+.canalRadio-item .canalRadio-imagen,
+.programa-item .programa-imagen{
     height: 245px;
     
     width: 100%;
@@ -140,6 +144,7 @@ form {
     
 }
 
+
 .canalRadio-item .canalRadio-imagen img{
     
     height: 100%;
@@ -149,7 +154,17 @@ form {
 
 }
 
-.canalRadio-item .canalRadio-nombre {
+.programa-item .programa-imagen img{
+    
+    
+    width: 100%;
+
+
+
+}
+
+.canalRadio-item .canalRadio-nombre,
+.programa-item .programa-nombre {
     
     color: white;
     padding: 10px;
@@ -158,13 +173,16 @@ form {
 
 }
 
-.canalRadio-item .canalRadio-nombre a{
+.canalRadio-item .canalRadio-nombre a,
+.programa-item .programa-nombre a{
     
     color: white;
    
 
 }
 
+
+/* canal de radio detalle */
 
 #canalRadio-head-card .imagen{
     width: 170px;
@@ -179,4 +197,27 @@ form {
    height: 170px;
    width: 100%; 
 
+}
+
+
+
+
+/*Programas*/
+.listado-programas{
+    height: auto;
+    margin-bottom: 715px;
+}
+
+.programa-item .programa-imagen{
+    height: 200px;
+}
+
+.programa-item{
+    height: 320px;
+    margin-bottom: 20px;
+}
+
+.programa-item .programa-imagen img{
+    width: 100%;
+    height: 100%;
 }

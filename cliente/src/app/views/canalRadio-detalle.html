@@ -1,4 +1,4 @@
-<div *ngIf="canalRadio" class="artist-box">
+<div *ngIf="canalRadio" class="canalRadio-box">
       <div id="canalRadio-head-card">
 		<div class="imagen">
 			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}" *ngIf="canalRadio.imagen && canalRadio.imagen !== 'null'"/>
@@ -13,7 +13,77 @@
        </div>	
 	   <div class="clearfix"></div>
 	
-	   <div id="gallery-albums" *ngIf="programas">
+	   <div id="marco-listado-programas" *ngIf="programas">
+				<ul class="listado-programas">
+						<li *ngFor="let programa of programas" class="col-lg-4 programa-item">
+							<div class="programa-imagen">
+								<img src="{{url + 'programa/logotipo/' + programa.imagen}}" />
+							</div>
+                            <div class="programa-nombre">
+
+								<p>
+									<a [routerLink]="['/programa', programa._id]" >
+										{{programa.nombre}}
+									</a>
+								</p>
+
+								<p>
+									<a [routerLink]="['/canalRadio', programa.canalradio._id]">
+										{{programa.canalradio.nombre}}
+									</a>
+								</p>
+								<div class="buttons" *ngIf="identity.rol == 'ROL_ADMIN'">
+									<a [routerLink]="['/editar-programa', programa._id]" class="btn btn-sm btn-warning">Editar</a>
+									<a (click)="siConfirmarBorrado(programa._id)" class="btn btn-sm btn-danger">
+										Borrar
+									</a>
+								</div>
+
+						        <div class="seguro seguro-programa" *ngIf="confirmado == programa._id">
+											<a (click)="siBorrarPrograma(programa._id)" class="btn btn-sm btn-danger">
+												Eliminar
+											</a>
+											<a (click)="siCancelarPrograma()" class="btn btn-sm btn-primary">
+												Cancelar
+											</a>
+								</div>
+                            </div> 	
+							<!--
+							<div class="programa-nommbre">
+
+
+								<p>
+									<a [routerLink]="['/programa', programa._id]">
+										{{programa.nombre}}
+									</a>
+								</p>
+
+								<p>
+									<a [routerLink]="['/canalRadio', programa.canalradio._id]">
+										{{programa.canalradio.nombre}}
+									</a>
+								</p>
+
+								<div class="buttons" *ngIf="identity.rol == 'ROL_ADMIN'">
+									<a [routerLink]="['/editar-programa', programa._id]" class="btn btn-sm btn-warning">Editar</a>
+									<a (click)="onDeleteConfirm(album._id)" class="btn btn-sm btn-danger">
+										Borrar
+									</a>
+								</div>
+							</div>
+
+							<div class="seguro seguro-programa" *ngIf="confirmado == album._id">
+								<a (click)="onDeletePrograma(album._id)" class="btn btn-sm btn-danger">
+									Eliminar
+								</a>
+								<a (click)="onCancelPrograma()" class="btn btn-sm btn-primary">
+									Cancelar
+								</a>
+							</div>
+                            --> 
+
+						</li>
+					</ul>	   	
 	   	
 	   </div>
 </div>

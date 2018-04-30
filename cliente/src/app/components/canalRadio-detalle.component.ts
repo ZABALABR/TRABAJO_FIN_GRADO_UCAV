@@ -5,7 +5,8 @@ import { GLOBAL } from '../services/global';
 import { ServicioUsuario } from  '../services/servicio.usuario';
 import { ServicioCanalRadio } from  '../services/servicio.canalRadio';
 import { CanalRadio } from '../models/canalRadio';
-
+import { ServicioPrograma } from '../services/servicio.programa';
+import { Programa } from '../models/programa';
 
 
 
@@ -18,12 +19,13 @@ import { CanalRadio } from '../models/canalRadio';
 @Component({
 	selector: 'canalRadio-detalle',
 	templateUrl: '../views/canalRadio-detalle.html',
-	providers: [ServicioUsuario, ServicioCanalRadio]
+	providers: [ServicioUsuario, ServicioCanalRadio, ServicioPrograma]
 })
 
 export class CanalRadioDetalleComponent implements OnInit{
 	
 	public canalRadio: CanalRadio;
+	public programas: Programa[];
 	public identity;
 	public token;
 	public url: string;
@@ -34,7 +36,8 @@ export class CanalRadioDetalleComponent implements OnInit{
 		private _route: ActivatedRoute,
 		private _router: Router,
 		private _servicioUsuario: ServicioUsuario,
-		private _servicioCanalRadio: ServicioCanalRadio
+		private _servicioCanalRadio: ServicioCanalRadio,
+		private _servicioPrograma: ServicioPrograma,
 
 		
 		
@@ -70,6 +73,26 @@ export class CanalRadioDetalleComponent implements OnInit{
 						this.canalRadio = response.canal;
 
 						//solicitamos los programas de este canal de radio.
+
+						this._servicioPrograma.dameProgramas(this.token, response.canal._id).subscribe(
+						response => {
+							if(!response.programas){
+								this.alertMensaje = 'Este canal de radio no tiene ningún programa';
+							}else{
+								this.programas = response.programas;
+							}
+						},
+						error => {
+							var errorMessage = <any>error;
+
+					        if(errorMessage != null){
+					          var body = JSON.parse(error._body);
+					          //this.alertMessage = body.message;
+
+					          console.log(error);
+					        }
+						});
+
 					}
 				},
 				error => {
@@ -122,7 +145,35 @@ export class CanalRadioDetalleComponent implements OnInit{
 
 
 
+    public confirmado;
+	siConfirmarBorrado(id){
+		this.confirmado = id;
+	}
 
+	siCancelarPrograma(){
+		this.confirmado = null;
+	}
+
+	siBorrarPrograma(id){
+		this._servicioPrograma.eliminarPrograma(this.token, id).subscribe(
+			response => {
+				if(!response.programa){
+					alert('Error en el servidor al intentar borrar el programa');
+				}
+				this.dameCanalRadio();
+			},
+			error => {
+				var errorMessage = <any>error;
+
+		        if(errorMessage != null){
+		          var body = JSON.parse(error._body);
+		          //this.alertMessage = body.message;
+
+		          console.log(error);
+		        }
+			}	
+		);
+	}
 
 
 
