@@ -22,10 +22,10 @@ export class ServicioPodcast{
 		let options = new RequestOptions({headers: headers});
 
 		if(programaId == null){
-			return this._http.get(this.url+'podcats', options)
+			return this._http.get(this.url+'podcasts', options)
 				 .map(res => res.json());
 		}else{
-			return this._http.get(this.url+'podcats/'+programaId, options)
+			return this._http.get(this.url+'podcasts/'+programaId, options)
 				 .map(res => res.json());
 		}
 	}

@@ -67,7 +67,7 @@ export class PodcastCrearComponent implements OnInit{
 						this.alertMensaje = '¡El podcast se ha creado correctamente!';
 						this.podcast = response.podcast;
 						
-						//this._router.navigate(['/editar-tema', response.song._id]);
+						this._router.navigate(['/editar-podcast', response.podcast._id]);
 					}
 
 				},

@@ -19,6 +19,7 @@ import { ProgramaCrearComponent } from './components/programa-crear.component';
 import { ProgramaEditarComponent } from './components/programa-editar.component';
 import { ProgramaDetalleComponent } from './components/programa-detalle.component';
 import { PodcastCrearComponent } from './components/podcast-crear.component';
+import { PodcastEditarComponent } from './components/podcast-editar.component';
 
 PodcastCrearComponent
 
@@ -34,7 +35,8 @@ PodcastCrearComponent
     ProgramaCrearComponent,
     ProgramaEditarComponent,
     ProgramaDetalleComponent,
-    PodcastCrearComponent
+    PodcastCrearComponent,
+    PodcastEditarComponent
   ],
   imports: [
     BrowserModule,

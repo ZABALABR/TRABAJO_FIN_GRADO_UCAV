@@ -15,23 +15,21 @@ import { ServicioPrograma } from '../services/servicio.programa';
 
 import { Programa } from '../models/programa';
 
-/*
-import { SongService } from '../services/song.service';
-import { Song } from '../models/song';
-*/
 
+import { ServicioPodcast } from  '../services/servicio.podcast';
+import { Podcast } from '../models/podcast';
 
 
 
 @Component({
 	selector: 'programa-detalle',
 	templateUrl: '../views/programa-detalle.html',
-	providers: [ServicioUsuario, ServicioPrograma]
+	providers: [ServicioUsuario, ServicioPrograma,ServicioPodcast]
 })
 
 export class ProgramaDetalleComponent implements OnInit{
 	public programa: Programa;
-	//public songs: Song[];
+	public podcasts: Podcast[];
 	public identity;
 	public token;
 	public url: string;
@@ -43,7 +41,8 @@ export class ProgramaDetalleComponent implements OnInit{
 
         private _servicioUsuario: ServicioUsuario,
 		
-		private _servicioPrograma: ServicioPrograma
+		private _servicioPrograma: ServicioPrograma,
+		private _servicioPodcast: ServicioPodcast,
 
 	){
 		this.identity = this._servicioUsuario.getIdentity();
@@ -73,14 +72,14 @@ export class ProgramaDetalleComponent implements OnInit{
 					}else{
 						this.programa = response.programa;
 
-						/*
-						// Sacar las canciones
-						this._songService.getSongs(this.token, response.album._id).subscribe(
+						
+						// obtenemos todos los podcast que tenemos en la bd de este programa de radio
+						this._servicioPodcast.damePodcasts(this.token, response.programa._id).subscribe(
 						response => {
-							if(!response.songs){
-								this.alertMessage = 'Este album no tiene canciones';
+							if(!response.podcasts){
+								this.alertMensaje = 'Este programa no tiene ningún podcasts';
 							}else{
-								this.songs = response.songs;
+								this.podcasts = response.podcasts;
 							}
 						},
 						error => {
@@ -93,7 +92,7 @@ export class ProgramaDetalleComponent implements OnInit{
 					          console.log(error);
 					        }
 						});
-						*/
+						
 
 					}
 				},
@@ -113,24 +112,24 @@ export class ProgramaDetalleComponent implements OnInit{
       
 	}
 
-/*
+
 	public confirmado;
-	onDeleteConfirm(id){
+	siConfirmarBorrado(id){
 		this.confirmado = id;
 	}
 
-	onCancelSong(){
+	siCancelarPodcast(){
 		this.confirmado = null;
 	}
 
-	onDeleteSong(id){
-		this._songService.deleteSong(this.token, id).subscribe(
+	siBorrarPodcast(id){
+		this._servicioPodcast.eliminarPodcast(this.token, id).subscribe(
 			response => {
-				if(!response.song){
-					alert('Error ene el servidor');
+				if(!response.podcast){
+					alert('Error en el servidor');
 				}
 
-				this.getAlbum();
+				this.damePrograma();
 			},
 			error => {
 				var errorMessage = <any>error;
@@ -145,22 +144,22 @@ export class ProgramaDetalleComponent implements OnInit{
 		);
 	}
 
-	startPlayer(song){
-		let song_player = JSON.stringify(song);
-		let file_path = this.url + 'get-song-file/' + song.file;
-		let image_path = this.url + 'get-image-album/' + song.album.image;
+	reproducirPodcast(podcast){
+		let podcast_a_reproducir = JSON.stringify(podcast);
+		let file_path = this.url + 'podcast/audio/' + podcast.file;
+		let image_path = this.url + 'programa/logotipo/' + podcast.programa.imagen;
 
-		localStorage.setItem('sound_song', song_player);
+		localStorage.setItem('reproduciendo_podcast', podcast_a_reproducir);
 
 		document.getElementById("mp3-source").setAttribute("src", file_path);
 		(document.getElementById("player") as any).load();
 		(document.getElementById("player") as any).play();
 
-		document.getElementById('play-song-title').innerHTML = song.name;
-		document.getElementById('play-song-artist').innerHTML = song.album.artist.name;
-		document.getElementById('play-image-album').setAttribute('src', image_path);
+		document.getElementById('play-podcast-title').innerHTML = podcast.descripcion;
+		document.getElementById('play-podcast-cadena').innerHTML = podcast.programa.canalradio.nombre;
+		document.getElementById('play-logotipo-programa').setAttribute('src', image_path);
 
 	}
 
-*/	
+
 }

@@ -22,6 +22,7 @@ import { ProgramaDetalleComponent } from './components/programa-detalle.componen
 // import de los podcast
 
 import { PodcastCrearComponent } from './components/podcast-crear.component';
+import { PodcastEditarComponent } from './components/podcast-editar.component';
 
 
 
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
 	{path: 'crear-programa/:canalRadio', component: ProgramaCrearComponent},//le pasamos el id del canal de radio
 	{path: 'editar-programa/:id', component: ProgramaEditarComponent},
 	{path: 'programa/:id', component: ProgramaDetalleComponent},
-	{path: 'crear-podcast/:programa', component: PodcastCrearComponent}, //le pasamos el id del program
+	{path: 'crear-podcast/:programa', component: PodcastCrearComponent}, //le pasamos el id del program en el param programa
+	{path: 'editar-podcast/:id', component: PodcastEditarComponent}, //le pasamos el id del podcast
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
 /*

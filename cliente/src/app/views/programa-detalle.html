@@ -17,33 +17,33 @@
 			</a>
 		</div>
 	</div>
-	<!--
+	
 	<div class="clearfix"></div>
-	<div id="gallery-songs" *ngIf="songs">
-		<ul id="songs-list">
-			<li *ngFor="let song of songs" class="song-item">
-				<div class="title">
-					<a class="btn btn-success" (click)="startPlayer(song)">
+	<div id="marco-listado-podcasts" *ngIf="podcasts">
+		<ul id="listado-podcasts">
+			<li *ngFor="let podcast of podcasts" class="podcast-item">
+				<div class="marco-podcats">
+					<a class="btn btn-success" (click)="reproducirPodcast(podcast)">
 						<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
 					</a>
 
-					{{song.number + '. '+ song.name + ' - '+ song.duration}}
+					{{podcast.numero + '. '+ podcast.descripcion + ' - '+ podcast.duracion}}
 
-					<div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
-						<a [routerLink]="['/editar-tema', song._id]" class="btn btn-warning">
+					<div class="buttons" *ngIf="identity && identity.rol == 'ROL_ADMIN'">
+						<a [routerLink]="['/editar-podcast', podcast._id]" class="btn btn-warning">
 							Editar
 						</a>
 
-						<a (click)="onDeleteConfirm(song._id)" class="btn btn-danger">
+						<a (click)="siConfirmarBorrado(podcast._id)" class="btn btn-danger">
 							Borrar
 						</a>
 					</div>
 
-					<div class="seguro seguro-song" *ngIf="confirmado == song._id">
-						<a (click)="onDeleteSong(song._id)" class="btn btn-danger">
+					<div class="seguro seguro-podcast" *ngIf="confirmado == podcast._id">
+						<a (click)="siBorrarPodcast(podcast._id)" class="btn btn-danger">
 							Eliminar
 						</a>
-						<a (click)="onCancelSong()" class="btn btn-primary">
+						<a (click)="siCancelarPodcast()" class="btn btn-primary">
 							Cancelar
 						</a>
 					</div>
@@ -53,7 +53,7 @@
 			</li>
 		</ul>
 	</div>
--->
+
 </div>
 
 
