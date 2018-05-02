@@ -209,9 +209,34 @@ function generarRSS(req, res){
 				res.status(404).send({message: 'No hay podcasts en la BD.'});
 			}else{
 						podcasts.forEach( function(myDoc) { 
-						        
+							    var nombreProgramaRSS = '';
+							    var nombreCanalRadioRSS = '';
+							    /*
+							    console.log(myDoc);
+                                console.log(myDoc.programa._id);  
+                                console.log(myDoc.programa.nombre);  
+                                */
+								if (myDoc.programa){
+                                    nombreProgramaRSS = myDoc.programa.nombre;  	
+                                }else {
+                                    nombreProgramaRSS = 'sin programa';  	
+                                }
+
+                                if (myDoc.programa.canalradio){
+                                    nombreCanalRadioRSS = myDoc.programa.canalradio.nombre;  	
+                                }else {
+                                   nombreCanalRadioRSS = 'sin canal';  	
+                                }
+                                              
+                                console.log('canal:' + nombreCanalRadioRSS);
+                                console.log('programa:' + nombreProgramaRSS);
+                                console.log('podcast:' + myDoc.descripcion);
+
+
+
 						        feed.item({
-						        title:  'podcast RADIO UCAV TFG - ' + myDoc.descripcion,
+						        //title:  'podcast RADIO UCAV TFG - ' +  myDoc.descripcion,	
+						        title:  'podcast RADIO UCAV TFG - ' + nombreCanalRadioRSS + '|' +   nombreProgramaRSS    + '|' +  myDoc.descripcion,
 						        //title:  'podcast RADIO UCAV TFG 2018 - ' + myDoc.programa.canalradio.nombre + ' | ' +  myDoc.programa.nombre +  ' | ' +  myDoc.descripcion,
 						        description: myDoc.descripcion,
 						        url: 'http://localhost:3977/api/podcast/audio/' + myDoc.file, // link to the item

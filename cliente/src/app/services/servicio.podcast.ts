@@ -74,4 +74,24 @@ export class ServicioPodcast{
 						 .map(res => res.json());
 	}
 
+
+/*
+	subscribirPodcast( programaId = null){
+		let headers = new Headers({
+			'Content-Type':'application/json'
+			
+		});
+
+		let options = new RequestOptions({headers: headers});
+
+		if(programaId == null){
+			return this._http.get(this.url+'RSS', options);
+				// .map(res => res.xml());
+		}else{
+			return this._http.get(this.url+'RSS/'+programaId, options);
+				// .map(res => res.xml());
+		}
+	}
+
+*/
 }

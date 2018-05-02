@@ -15,6 +15,11 @@
 			<a [routerLink]="['/crear-podcast', programa._id]" class="btn btn-default" *ngIf="identity.rol == 'ROL_ADMIN'">
 				Añadir podcast
 			</a>
+
+			<a class="btn btn-warning"  href="{{url + 'RSS/' +  programa._id}}" >
+				        
+						<span class="glyphicon glyphicon-equalizer" ></span>  
+			</a>
 		</div>
 	</div>
 	

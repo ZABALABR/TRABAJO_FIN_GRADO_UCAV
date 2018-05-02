@@ -34,6 +34,7 @@ export class ProgramaDetalleComponent implements OnInit{
 	public token;
 	public url: string;
 	public alertMensaje;
+	public rss;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -92,6 +93,8 @@ export class ProgramaDetalleComponent implements OnInit{
 					          console.log(error);
 					        }
 						});
+
+
 						
 
 					}
@@ -161,5 +164,71 @@ export class ProgramaDetalleComponent implements OnInit{
 
 	}
 
+/*
+    subscribirPodcast(){
+    	console.log('el metodo funciona....')
+			
+	
+		this._route.params.forEach((params: Params) => {
+			let id = params['id'];
 
+			this._servicioPrograma.damePrograma(this.token, id).subscribe(
+				response => {
+					if(!response.programa){
+						this._router.navigate(['/']);
+					}else{
+						this.programa = response.programa;
+
+						
+						// llamamos al servicio para que envie peticion al api
+
+
+					
+
+
+
+						this._servicioPodcast.subscribirPodcast( response.programa._id).subscribe(
+
+						response => {
+							var respuestaMessage = <any>response;
+							if(respuestaMessage != null){
+								console.log('recibo respuesta....')
+								this.rss = respuestaMessage._body;
+								console.log('la respuesta es:'+ this.rss)
+							}else{
+								this.alertMensaje = 'Este programa no tiene ningún podcasts';
+								console.log('sin respuesta....')
+							}
+						},
+						error => {
+							var errorMessage = <any>error;
+
+					        if(errorMessage != null){
+					          var body = JSON.parse(error._body);
+					          //this.alertMessage = body.message;
+
+					          console.log(error);
+					        }
+						});							
+						
+						
+
+					}
+				},
+				error => {
+					var errorMessage = <any>error;
+
+			        if(errorMessage != null){
+			          var body = JSON.parse(error._body);
+			          //this.alertMessage = body.message;
+
+			          console.log(error);
+			        }
+				}	
+			);
+
+		});
+      
+}
+*/
 }
