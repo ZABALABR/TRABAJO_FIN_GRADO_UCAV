@@ -8,18 +8,24 @@ import { AppComponent } from './app.component';
 
 
 
-// usuario
+
 import { InicioComponent } from './components/inicio.component';
+
 import { UsuarioEdicionComponent } from './components/usuario-edicion.component';
+
 import { CanalRadioListadoComponent } from './components/canalRadio-listado.component';
 import { CanalRadioCrearComponent } from './components/canalRadio-crear.component';
 import { CanalRadioEditarComponent } from './components/canalRadio-editar.component';
 import { CanalRadioDetalleComponent } from './components/canalRadio-detalle.component';
+
 import { ProgramaCrearComponent } from './components/programa-crear.component';
 import { ProgramaEditarComponent } from './components/programa-editar.component';
 import { ProgramaDetalleComponent } from './components/programa-detalle.component';
+
 import { PodcastCrearComponent } from './components/podcast-crear.component';
 import { PodcastEditarComponent } from './components/podcast-editar.component';
+
+import { ReproductorComponent } from './components/reproductor.component';
 
 PodcastCrearComponent
 
@@ -36,7 +42,8 @@ PodcastCrearComponent
     ProgramaEditarComponent,
     ProgramaDetalleComponent,
     PodcastCrearComponent,
-    PodcastEditarComponent
+    PodcastEditarComponent,
+    ReproductorComponent
   ],
   imports: [
     BrowserModule,

@@ -152,12 +152,12 @@ export class ProgramaDetalleComponent implements OnInit{
 		localStorage.setItem('reproduciendo_podcast', podcast_a_reproducir);
 
 		document.getElementById("mp3-source").setAttribute("src", file_path);
-		(document.getElementById("player") as any).load();
-		(document.getElementById("player") as any).play();
+		(document.getElementById("reproductor") as any).load();
+		(document.getElementById("reproductor") as any).play();
 
-		document.getElementById('play-podcast-title').innerHTML = podcast.descripcion;
-		document.getElementById('play-podcast-cadena').innerHTML = podcast.programa.canalradio.nombre;
-		document.getElementById('play-logotipo-programa').setAttribute('src', image_path);
+		document.getElementById('rep-podcast-descripcion').innerHTML = podcast.descripcion;
+		document.getElementById('rep-podcast-canal').innerHTML = podcast.programa.canalradio.nombre;
+		document.getElementById('rep-logo-programa').setAttribute('src', image_path);
 
 	}
 

@@ -12,6 +12,8 @@
 <div [class.hidden]="!identity" class="central col-lg-11">
 	
 	<router-outlet></router-outlet>
+	  <div class="clearfix"></div>
+	<reproductor class="reproductor" *ngIf="identity"></reproductor> 
 </div>
 
 
@@ -123,10 +125,12 @@
 		</a>
 		</h1>
 		<nav id="navigation" >
+			<!--
 		    <a href="#">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					Buscar
 		    </a>	
+		     -->
 		    <a [routerLink]="['/canalesRadio',1]" [routerLinkActive]="['actived']">
 					<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
 					Canales de Radio

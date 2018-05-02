@@ -212,6 +212,7 @@ function generarRSS(req, res){
 						        
 						        feed.item({
 						        title:  'podcast RADIO UCAV TFG - ' + myDoc.descripcion,
+						        //title:  'podcast RADIO UCAV TFG 2018 - ' + myDoc.programa.canalradio.nombre + ' | ' +  myDoc.programa.nombre +  ' | ' +  myDoc.descripcion,
 						        description: myDoc.descripcion,
 						        url: 'http://localhost:3977/api/podcast/audio/' + myDoc.file, // link to the item
 						        //guid: '1123', // optional - defaults to url	 

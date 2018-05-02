@@ -28,8 +28,10 @@
 					</a>
 
 					{{podcast.numero + '. '+ podcast.descripcion + ' - '+ podcast.duracion}}
+				
 
 					<div class="buttons" *ngIf="identity && identity.rol == 'ROL_ADMIN'">
+									
 						<a [routerLink]="['/editar-podcast', podcast._id]" class="btn btn-warning">
 							Editar
 						</a>
@@ -52,7 +54,7 @@
 				</div>
 			</li>
 		</ul>
-	</div>
+	</div>    
 
 </div>
 
