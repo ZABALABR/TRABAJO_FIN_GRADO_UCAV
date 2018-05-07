@@ -6,6 +6,7 @@ import { ServicioUsuario } from  '../services/servicio.usuario';
 
 import { ServicioCanalRadio } from  '../services/servicio.canalRadio';
 import { CanalRadio } from '../models/canalRadio';
+import { MyFilterPipe } from '../pipes/filtroCanales.pipe';
 
 @Component({
 	selector: 'canalRadio-listado',

@@ -1,9 +1,16 @@
 <div class="head-page"   *ngIf="identity">
     <h1>{{titulo}}</h1>
-    <a  [routerLink]="['/crear-canalRadio']" *ngIf="identity && identity.rol == 'ROL_ADMIN'" class="btn btn-default">
-		Crear canal de Radio
-	</a>
-
+   
+    	
+	    <a  [routerLink]="['/crear-canalRadio']" *ngIf="identity && identity.rol == 'ROL_ADMIN'" class="btn btn-default">
+			Crear canal de Radio
+		</a>
+        
+		
+	     Buscar Canal: <input type="text" name='search' [(ngModel)]="search">
+		 
+	 
+ 
 	<ul class="pagination pull-right">
 		<li><a [routerLink]="['/canalesRadio', pag_ant]">Anterior</a></li>
 		<li><a [routerLink]="['/canalesRadio', pag_sig]">Siguiente</a></li>
@@ -13,7 +20,7 @@
 
 <div class="clearfix"></div>
 <ul class="listado-CanalesRadio" *ngIf="identity">
-    <li *ngFor="let canalRadio of canalesRadio" class="col-lg-3 canalRadio-item">
+    <li *ngFor="let canalRadio of canalesRadio  | myfilter:search" class="col-lg-3 canalRadio-item">
        	<div class="canalRadio-imagen">
 			<img src="{{ url + 'obtener-fichero-canal/' + canalRadio.imagen }}" />
 		</div>

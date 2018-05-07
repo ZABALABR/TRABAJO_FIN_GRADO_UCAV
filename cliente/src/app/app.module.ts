@@ -26,6 +26,8 @@ import { PodcastCrearComponent } from './components/podcast-crear.component';
 import { PodcastEditarComponent } from './components/podcast-editar.component';
 
 import { ReproductorComponent } from './components/reproductor.component';
+import { MyFilterPipe } from './pipes/filtroCanales.pipe';
+
 
 PodcastCrearComponent
 
@@ -43,7 +45,8 @@ PodcastCrearComponent
     ProgramaDetalleComponent,
     PodcastCrearComponent,
     PodcastEditarComponent,
-    ReproductorComponent
+    ReproductorComponent,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,

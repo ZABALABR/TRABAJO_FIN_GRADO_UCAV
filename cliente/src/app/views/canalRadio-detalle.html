@@ -9,13 +9,14 @@
      		<a *ngIf="identity.rol == 'ROL_ADMIN'" [routerLink]="['/crear-programa', canalRadio._id]"  class="btn btn-default">
 				Añadir programa
 			</a>
+			
      	 </div>
        </div>	
 	   <div class="clearfix"></div>
 	
 	   <div id="marco-listado-programas" *ngIf="programas">
 				<ul class="listado-programas">
-						<li *ngFor="let programa of programas" class="col-lg-4 programa-item">
+						<li *ngFor="let programa of programas " class="col-lg-4 programa-item">
 							<div class="programa-imagen">
 								<img src="{{url + 'programa/logotipo/' + programa.imagen}}" />
 							</div>
