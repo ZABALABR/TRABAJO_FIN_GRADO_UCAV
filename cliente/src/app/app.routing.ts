@@ -48,20 +48,7 @@ const appRoutes: Routes = [
 	{path: 'editar-podcast/:id', component: PodcastEditarComponent}, //le pasamos el id del podcast
     {path: 'mi-cuenta', component: UsuarioEdicionComponent}, 
     {path: '**', component: InicioComponent}
-/*
-	{path: 'artistas/:page', component: ArtistListComponent},
-	{path: 'crear-artista', component: ArtistAddComponent},
-	{path: 'editar-artista/:id', component: ArtistEditComponent},
-	{path: 'artista/:id', component: ArtistDetailComponent},
-	{path: 'crear-album/:artist', component: AlbumAddComponent},
-	{path: 'editar-album/:id', component: AlbumEditComponent},
-	{path: 'album/:id', component: AlbumDetailComponent},
-	{path: 'crear-tema/:album', component: SongAddComponent},
-	{path: 'editar-tema/:id', component: SongEditComponent},
-	{path: 'mis-datos', component: UserEditComponent},
 	
-	{path: '**', component: HomeComponent}
-*/	
 ];
 
 export const appRoutingProviders: any[] = [];
