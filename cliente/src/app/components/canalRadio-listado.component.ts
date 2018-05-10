@@ -66,8 +66,21 @@ export class CanalRadioListadoComponent implements OnInit{
 					response => {
 						if(!response.canales){
 							this._router.navigate(['/']);
+
 						}else{
-							this.canalesRadio = response.canales;
+							if (response.canales.length > 0){
+								this.canalesRadio = response.canales;
+							}else {
+								//alert (this.pag_sig );
+							    this.pag_sig = page-1;	
+							    //alert (this.pag_sig );
+							    this._router.navigate(['/canalesRadio', this.pag_sig]);
+
+							}
+							
+							//this.canalesRadio = response.canales;
+
+							
 						}
 					},
 					error => {
