@@ -23,6 +23,7 @@ export class CanalRadioListadoComponent implements OnInit{
 	public url: string;
 	public pag_sig;
 	public pag_ant;
+	public total_paginas;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class CanalRadioListadoComponent implements OnInit{
 		this.url = GLOBAL.url;
 		this.pag_sig = 1;
 		this.pag_ant = 1;
+		this.total_paginas = 0;
 	}
 
 	ngOnInit(){
@@ -54,27 +56,37 @@ export class CanalRadioListadoComponent implements OnInit{
 				if(!page){
 					page = 1;
 				}else{
+
 					this.pag_sig = page+1;
 					this.pag_ant = page-1;
 
 					if(this.pag_ant == 0){
 						this.pag_ant = 1;
 					}
+					if(page == this.total_paginas){
+							this.pag_sig = this.total_paginas;
+							
+					}				 
 				}
 
 				this._servicioCanalRadio.dameCanalesRadio(this.token, page).subscribe(
 					response => {
 						if(!response.canales){
 							this._router.navigate(['/']);
-
+                            
 						}else{
+							this.total_paginas = Math.trunc (response.total_items / 4) ;
+							if (response.total_items % 4 > 0 ) {
+								this.total_paginas = this.total_paginas + 1;
+							}
+							
 							if (response.canales.length > 0){
 								this.canalesRadio = response.canales;
 							}else {
 								//alert (this.pag_sig );
-							    this.pag_sig = page-1;	
+							    //this.pag_sig = page-1;	
 							    //alert (this.pag_sig );
-							    this._router.navigate(['/canalesRadio', this.pag_sig]);
+							    //this._router.navigate(['/canalesRadio', this.pag_sig]);
 
 							}
 							

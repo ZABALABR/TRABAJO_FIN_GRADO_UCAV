@@ -4,7 +4,7 @@ html, body{
 	margin: 0px;
 	height: 100%;
 	background: rgb(246, 221, 204  );  /*GRIS CLARITO*/  /*187, 208, 169     221, 247, 245     195, 213, 227        */   /*250, 245, 242*/
-    /*background-image:url('../imagenes/fondo.jpg');*/
+    background-image:url('../imagenes/fondo.png');
 }
 
 form {
@@ -17,7 +17,7 @@ form {
     border-radius: 1em;
 }
 .jumbotron{
-    background: rgb(246, 221, 204  ); /*transparent;*/
+    background: transparent; /*rgb(246, 221, 204  )*/ 
 
 }
 .actived{
@@ -267,7 +267,8 @@ form {
 /* reproductor */
 
 .reproductor{
-    background: rgb(246, 221, 204);
+    /*background: rgb(246, 221, 204);*/
+    background: transparent;
     position: fixed;
     width: 90.5%;
     bottom: 0;
