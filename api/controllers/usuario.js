@@ -37,7 +37,7 @@ function registrarUsuario(req, res){
        
 	    
 	    if (params.password) {
-	    	// Encriptar contraseña RSRS
+	    	// Encriptar contraseña 
 
 
 
